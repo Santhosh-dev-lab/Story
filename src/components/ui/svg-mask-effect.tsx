@@ -19,64 +19,66 @@ export const MaskContainer = ({
   const [isHovered, setIsHovered] = useState(false);
   const [mousePosition, setMousePosition] = useState<any>({ x: null, y: null });
   const containerRef = useRef<any>(null);
-  const updateMousePosition = (e: any) => {
-    const rect = containerRef.current.getBoundingClientRect();
-    setMousePosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
-  };
 
   useEffect(() => {
+    const updateMousePosition = (e: any) => {
+      if (!containerRef.current) return;
+      const rect = containerRef.current.getBoundingClientRect();
+      setMousePosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+      
+      const isOverTarget = e.target.closest('.hover-target') !== null;
+      setIsHovered(isOverTarget);
+    };
+
     containerRef.current.addEventListener("mousemove", updateMousePosition);
     return () => {
       if (containerRef.current) {
-        containerRef.current.removeEventListener(
-          "mousemove",
-          updateMousePosition,
-        );
+        containerRef.current.removeEventListener("mousemove", updateMousePosition);
       }
     };
   }, []);
+
   let maskSize = isHovered ? revealSize : size;
 
   return (
     <motion.div
       ref={containerRef}
-      className={cn("relative h-[60vh] w-full max-w-7xl mx-auto flex items-center justify-center", className)}
-      animate={{
-        backgroundColor: isHovered ? "var(--neutral-900)" : "transparent",
-      }}
-      transition={{
-        backgroundColor: { duration: 0.3 },
-      }}
+      className={cn("relative w-full h-[30vh] md:h-[50vh] flex items-center justify-start", className)}
     >
       <motion.div
-        className="absolute flex h-full w-full items-center justify-center bg-black text-6xl [mask-image:url(/mask.svg)] [mask-repeat:no-repeat] [mask-size:40px] dark:bg-white"
+        className="absolute inset-0 z-30 flex items-center justify-start text-6xl pointer-events-none bg-white font-sans"
+        style={{
+          WebkitMaskImage: "url('/mask.svg')",
+          maskImage: "url('/mask.svg')",
+          WebkitMaskRepeat: "no-repeat",
+          maskRepeat: "no-repeat",
+        }}
         animate={{
+          WebkitMaskPosition: `${mousePosition.x - maskSize / 2}px ${
+            mousePosition.y - maskSize / 2
+          }px`,
           maskPosition: `${mousePosition.x - maskSize / 2}px ${
             mousePosition.y - maskSize / 2
           }px`,
+          WebkitMaskSize: `${maskSize}px`,
           maskSize: `${maskSize}px`,
-        }}
+        } as any}
         transition={{
+          WebkitMaskSize: { duration: 0.3, ease: "easeInOut" },
           maskSize: { duration: 0.3, ease: "easeInOut" },
+          WebkitMaskPosition: { duration: 0.15, ease: "linear" },
           maskPosition: { duration: 0.15, ease: "linear" },
-        }}
+        } as any}
       >
-        <div className="absolute inset-0 z-0 h-full w-full bg-black opacity-50 dark:bg-white" />
-        <div
-          onMouseEnter={() => {
-            setIsHovered(true);
-          }}
-          onMouseLeave={() => {
-            setIsHovered(false);
-          }}
-          className="relative z-20 w-full h-full flex items-center justify-center text-center text-4xl w-full h-full"
-        >
+        <div className="absolute inset-0 z-20 w-full h-full flex items-center justify-start text-left text-4xl pointer-events-none">
           {children}
         </div>
       </motion.div>
 
-      <div className="flex h-full w-full items-center justify-center pointer-events-none">
-        {revealText}
+      <div className="relative z-20 flex w-full h-full items-center justify-start pointer-events-none">
+        <div className="pointer-events-auto">
+          {revealText}
+        </div>
       </div>
     </motion.div>
   );

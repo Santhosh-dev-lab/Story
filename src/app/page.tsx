@@ -7,6 +7,7 @@ import { HoverEffect } from "@/components/ui/card-hover-effect";
 import { Cover } from "@/components/ui/cover";
 import { BackgroundBeams } from "@/components/ui/background-beams";
 import { MaskContainer } from "@/components/ui/svg-mask-effect";
+import Image from "next/image";
 
 const FloatingInterests = () => {
   const [mounted, setMounted] = useState(false);
@@ -35,9 +36,9 @@ const FloatingInterests = () => {
         return (
           <motion.span
             key={i}
-            className="absolute text-2xl md:text-5xl font-bold text-white dark:text-black opacity-80"
+            className="absolute text-2xl md:text-5xl font-bold text-black opacity-80 whitespace-nowrap"
             animate={{
-              x: [`${randomXStart}vw`, `${randomXEnd}vw`, `${randomXStart}vw`],
+              x: [`${randomXStart}%`, `${randomXEnd}%`, `${randomXStart}%`],
               y: [`${randomYStart}rem`, `${randomYEnd}rem`, `${randomYStart}rem`],
             }}
             transition={{
@@ -97,34 +98,95 @@ export default function Home() {
   return (
     <main className="bg-black min-h-screen text-white w-full overflow-hidden">
       {/* Hero Section */}
-      <div className="relative flex flex-col items-center justify-center min-h-screen px-4 antialiased overflow-hidden">
+      <div className="relative flex flex-col md:flex-row items-center justify-center min-h-screen px-4 md:px-12 antialiased overflow-hidden">
         <BackgroundBeams className="z-0" />
+        
+        {/* Left Side - Name and Story */}
         <motion.div
-          initial={{ opacity: 0.0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0.0, x: -40 }}
+          whileInView={{ opacity: 1, x: 0 }}
           transition={{
             delay: 0.3,
             duration: 0.8,
             ease: "easeInOut",
           }}
-          className="relative flex flex-col gap-4 items-center justify-center px-4 z-10 w-full"
+          className="relative flex flex-col gap-4 items-start justify-center px-4 z-10 w-full md:w-1/2 h-[60vh] md:h-screen"
         >
           <MaskContainer
             revealText={
-              <h1 className="text-4xl md:text-4xl lg:text-7xl font-semibold max-w-7xl mx-auto text-center relative z-20 py-6 bg-clip-text text-transparent bg-gradient-to-b from-neutral-800 via-neutral-700 to-neutral-700 dark:from-neutral-800 dark:via-white dark:to-white pointer-events-auto">
-                Santhosh <Cover>Kunam</Cover>
+              <h1 className="text-5xl md:text-6xl lg:text-8xl font-semibold max-w-7xl text-left relative z-20 py-6 leading-tight pointer-events-none">
+                <span className="pointer-events-auto inline-block hover-target transition-opacity duration-300 hover:opacity-0 bg-clip-text text-transparent bg-gradient-to-b from-neutral-800 via-neutral-700 to-neutral-700 dark:from-neutral-800 dark:via-white dark:to-white cursor-default">
+                  Santhosh
+                </span> <br /> 
+                <span className="pointer-events-auto inline-block bg-clip-text text-transparent bg-gradient-to-b from-neutral-800 via-neutral-700 to-neutral-700 dark:from-neutral-800 dark:via-white dark:to-white">
+                  <Cover>Kunam</Cover>
+                </span>
               </h1>
             }
-            className="h-[40rem] rounded-md w-full"
+            className="h-[auto] w-full items-start justify-start !mx-0"
           >
             <FloatingInterests />
           </MaskContainer>
-          <div className="font-extralight text-base md:text-4xl dark:text-neutral-200 py-4 -mt-20">
-            And this, is my story.
+        </motion.div>
+
+        {/* Right Side - Image & Design Placeholder */}
+        <motion.div
+          initial={{ opacity: 0.0, x: 40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{
+            delay: 0.5,
+            duration: 0.8,
+            ease: "easeInOut",
+          }}
+          className="relative flex flex-col items-center justify-center w-full md:w-1/2 h-[40vh] md:h-screen z-10 gap-6"
+        >
+          {/* User Portfolio Image */}
+          <div 
+            className="absolute right-0 bottom-0 w-full sm:w-[80vw] lg:w-[60vw] h-full flex items-end justify-end pointer-events-none z-0"
+            style={{
+              maskImage: "linear-gradient(to right, transparent, black 60%), linear-gradient(to top, transparent, black 15%)",
+              WebkitMaskImage: "linear-gradient(to right, transparent 5%, black 60%), linear-gradient(to top, transparent 5%, black 15%)",
+              maskComposite: "intersect",
+              WebkitMaskComposite: "source-in"
+            }}
+          >
+            {/* Dark vignette effect immediately over the image */}
+            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/10 to-transparent z-20" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent z-20" />
+            
+            <Image 
+              src="/portfolio_image-Photoroom.png"
+              alt="Santhosh Kunam"
+              fill
+              className="object-contain object-right-bottom drop-shadow-2xl z-10 scale-95 md:scale-100 origin-bottom-right"
+              priority
+            />
           </div>
-          <button className="bg-white rounded-full w-fit text-black px-4 py-2 hover:bg-neutral-200 transition-colors">
-            Explore now
-          </button>
+
+          {/* Floating Personal & Professional Badges */}
+          <motion.div 
+            animate={{ y: [0, -10, 0] }}
+            transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+            className="absolute top-[20%] left-0 xl:left-[-10%] bg-neutral-200/90 backdrop-blur-sm border border-neutral-300/50 text-neutral-900 text-xs md:text-sm font-semibold px-4 md:px-6 py-2 md:py-3 rounded-full shadow-2xl z-20"
+          >
+            Software Engineer
+          </motion.div>
+
+          <motion.div 
+            animate={{ y: [0, 15, 0] }}
+            transition={{ repeat: Infinity, duration: 5, ease: "easeInOut", delay: 1 }}
+            className="absolute bottom-[35%] right-0 xl:right-[-5%] bg-neutral-200/90 backdrop-blur-sm border border-neutral-300/50 text-neutral-900 text-xs md:text-sm font-semibold px-4 md:px-6 py-2 md:py-3 rounded-full shadow-2xl z-20"
+          >
+            Cinematographer & Artist
+          </motion.div>
+
+          <motion.div 
+            animate={{ y: [0, -12, 0] }}
+            transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut", delay: 2 }}
+            className="absolute top-[10%] right-[5%] xl:right-[15%] bg-neutral-200/90 backdrop-blur-sm border border-neutral-300/50 text-neutral-900 text-xs md:text-sm font-semibold px-4 md:px-6 py-2 md:py-3 rounded-full shadow-2xl z-20"
+          >
+            Music & Cricket Enthusiast
+          </motion.div>
         </motion.div>
       </div>
 
