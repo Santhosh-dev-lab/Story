@@ -12,6 +12,7 @@ import { TerminalBadge } from "@/components/ui/terminal-badge";
 import { FloatingDock } from "@/components/ui/floating-dock";
 import { PixelatedCanvas } from "@/components/ui/pixelated-canvas";
 import Image from "next/image";
+import { ShieldCheck, Mail, Github, Linkedin, ExternalLink } from "lucide-react";
 
 const FloatingInterests = () => {
   const [mounted, setMounted] = useState(false);
@@ -291,157 +292,170 @@ export default function Home() {
       <section id="about" className="min-h-screen relative w-full overflow-hidden flex items-center justify-center bg-transparent py-12">
         
         {/* The Paper Content Container - Floating on the space background */}
-        <div className="w-full max-w-6xl mx-auto px-6 md:px-12 relative z-10 flex flex-col md:flex-row gap-8 md:gap-12 items-center md:items-center bg-[#0a0a0a]/70 backdrop-blur-xl rounded-[2.5rem] border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.5)] overflow-hidden py-8 md:py-12"
-             style={{ backgroundImage: "url('https://www.transparenttextures.com/patterns/black-paper.png')" }}>
+        <div className="w-full max-w-6xl mx-auto px-6 md:px-12 relative z-10 bg-[#0a0a0a]/60 backdrop-blur-xl rounded-[2.5rem] border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.5)] overflow-hidden py-10 md:py-16">
           
-          {/* Decorative Tape Elements for Scrapbook Effect */}
-          <div className="absolute top-4 left-1/4 w-24 h-8 bg-white/10 rotate-[-15deg] backdrop-blur-sm border border-white/5 z-20 opacity-40" style={{ clipPath: "polygon(0% 10%, 100% 0%, 95% 90%, 5% 100%)" }} />
-          <div className="absolute bottom-8 right-1/4 w-28 h-10 bg-white/10 rotate-[10deg] backdrop-blur-sm border border-white/5 z-20 opacity-30" style={{ clipPath: "polygon(5% 0%, 95% 15%, 100% 90%, 0% 85%)" }} />
+          {/* Background Layer (Separated to fix visibility) */}
+          <div className="absolute inset-0 z-0 pointer-events-none opacity-100"
+               style={{ 
+                 backgroundImage: "url('/design-space-paper-textured-background.jpg')",
+                 backgroundSize: "cover",
+                 backgroundPosition: "center",
+                 filter: "grayscale(1) brightness(0.6) contrast(1.1)"
+               }} />
+
+          {/* Scratches / Scraped Overlay */}
+          <div className="absolute inset-0 opacity-[0.05] pointer-events-none z-0 mix-blend-overlay"
+               style={{ backgroundImage: "repeating-linear-gradient(45deg, transparent, transparent 100px, #fff 100px, #fff 101px), repeating-linear-gradient(-45deg, transparent, transparent 150px, #fff 150px, #fff 151px)" }} />
+
+          {/* Decorative Tape Elements for Scrapbook Effect - Intensified */}
+          <div className="absolute top-4 left-1/4 w-24 h-8 bg-white/15 rotate-[-15deg] backdrop-blur-sm border border-white/10 z-20 opacity-60" style={{ clipPath: "polygon(0% 10%, 100% 0%, 95% 90%, 5% 100%)" }} />
+          <div className="absolute top-1/2 -right-4 w-20 h-10 bg-white/10 rotate-[75deg] backdrop-blur-sm border border-white/5 z-20 opacity-30" style={{ clipPath: "polygon(10% 0%, 90% 10%, 100% 100%, 0% 90%)" }} />
+          <div className="absolute bottom-8 right-1/4 w-28 h-10 bg-white/15 rotate-[10deg] backdrop-blur-sm border border-white/10 z-20 opacity-50" style={{ clipPath: "polygon(5% 0%, 95% 15%, 100% 90%, 0% 85%)" }} />
 
           {/* Binding edge - more 'scrapped' and aligned */}
-          <div className="absolute top-0 bottom-0 left-0 w-4 md:w-10 bg-[#050505] border-r border-white/10 z-0" />
-          {/* Torn paper edge effect */}
-          <div className="absolute top-0 bottom-0 left-4 md:left-10 w-4 bg-white/10 z-0" style={{ clipPath: "polygon(0% 0%, 100% 0%, 85% 3%, 100% 6%, 80% 9%, 100% 12%, 85% 15%, 100% 18%, 80% 21%, 100% 24%, 85% 27%, 100% 30%, 80% 33%, 100% 36%, 85% 39%, 100% 42%, 80% 45%, 100% 48%, 85% 51%, 100% 54%, 80% 57%, 100% 60%, 85% 63%, 100% 66%, 80% 69%, 100% 72%, 85% 75%, 100% 78%, 80% 81%, 100% 84%, 85% 87%, 100% 90%, 80% 93%, 100% 96%, 85% 99%, 100% 100%, 0% 100%)" }} />
+          <div className="absolute top-0 bottom-0 left-0 w-4 md:w-10 bg-[#050505] border-r border-white/15 z-1" />
+          
+          {/* Torn paper edge effect - intensified jaggedness */}
+          <div className="absolute top-0 bottom-0 left-4 md:left-10 w-6 bg-white/15 z-1" 
+               style={{ clipPath: "polygon(0% 0%, 100% 0%, 75% 2%, 95% 5%, 80% 8%, 100% 11%, 70% 14%, 90% 17%, 85% 20%, 100% 23%, 75% 26%, 95% 29%, 80% 32%, 100% 35%, 70% 38%, 90% 41%, 85% 44%, 100% 47%, 75% 50%, 95% 53%, 80% 56%, 100% 59%, 70% 62%, 90% 65%, 85% 68%, 100% 71%, 75% 74%, 95% 77%, 80% 80%, 100% 83%, 70% 86%, 90% 89%, 85% 92%, 100% 95%, 75% 98%, 100% 100%, 0% 100%)" }} />
 
-        <div className="w-full relative z-10 flex flex-col md:flex-row gap-8 md:gap-12 items-center md:items-start pl-8 md:pl-20 pr-6 md:pr-12">
+          <div className="w-full relative z-10 flex flex-col md:flex-row gap-8 md:gap-12 items-center md:items-start pl-8 md:pl-20 pr-6 md:pr-12">
 
-          {/* Left Column – Compact ID Card */}
-          <div className="relative flex-shrink-0 w-full md:w-[280px]">
-            {/* Paperclip - perfectly aligned */}
-            <div className="absolute -top-10 left-1/2 -translate-x-1/2 z-40 drop-shadow-lg">
-              <svg width="40" height="80" viewBox="0 0 40 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="opacity-90">
-                <path d="M12,85 C6.5,85 2,80.5 2,75 L2,20 C2,10.6 9.6,3 19,3 C22.9,3 26,6.1 26,10 L26,65 C26,68.9 22.9,72 19,72 L12,72 C9.2,72 7,69.8 7,67 L7,25" stroke="#666" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </div>
-
-            {/* ID Card Body - Shorter Height */}
-            <div className="bg-[#0f0f0f] p-4 pt-8 rounded-xl border border-neutral-800 shadow-2xl relative overflow-hidden">
-              <div className="text-center mb-4">
-                <h3 className="text-white font-mono text-xl tracking-[0.2em] mb-1">ID: SK-P-01</h3>
-                <p className="text-emerald-500 font-mono text-[9px] tracking-widest uppercase opacity-80">Authorized Personnel Only</p>
+            {/* Left Column – Animated 'Live' ID Card */}
+            <motion.div 
+              initial={{ rotate: -1 }}
+              animate={{ 
+                y: [0, -12, 0],
+                rotate: [-2, 1, -2]
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+              className="relative flex-shrink-0 w-full md:w-[280px]"
+            >
+              {/* Paperclip - perfectly aligned */}
+              <div className="absolute -top-10 left-1/2 -translate-x-1/2 z-40 drop-shadow-lg">
+                <svg width="40" height="80" viewBox="0 0 40 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="opacity-95">
+                  <path d="M12,85 C6.5,85 2,80.5 2,75 L2,20 C2,10.6 9.6,3 19,3 C22.9,3 26,6.1 26,10 L26,65 C26,68.9 22.9,72 19,72 L12,72 C9.2,72 7,69.8 7,67 L7,25" stroke="#888" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
               </div>
 
-              {/* Pixelated Photo Area - Shorter aspect ratio */}
-              <div className="group relative w-full aspect-[1/1.1] overflow-hidden bg-black flex items-center justify-center border-2 border-neutral-800 rounded-lg mb-4 cursor-crosshair">
-                
-                {/* Multi-colored Pixelated Canvas (Matched to Reference) */}
-                <PixelatedCanvas
-                  src="/portfolio_image-Photoroom.png"
-                  width={280}
-                  height={350}
-                  cellSize={5}
-                  dotScale={0.92}
-                  shape="square"
-                  backgroundColor="#000000"
-                  dropoutStrength={0.03} 
-                  interactive
-                  distortionStrength={5}
-                  distortionRadius={80}
-                  distortionMode="swirl"
-                  followSpeed={0.2}
-                  jitterStrength={2}
-                  jitterSpeed={2}
-                  sampleAverage
-                  tintColor="#FFFFFF" 
-                  tintStrength={0.25} // Low tint to allow original colors
-                  className="absolute inset-0 w-full h-full object-cover object-top opacity-100 z-10"
-                />
-
-               {/* Reticle / scanner effect */}
-               <div className="absolute inset-0 border border-emerald-500/10 m-2 pointer-events-none z-20" />
-               <div className="absolute top-1 left-1 w-2 h-2 border-t border-l border-emerald-500/40 pointer-events-none z-20" />
-               <div className="absolute bottom-1 right-1 w-2 h-2 border-b border-r border-emerald-500/40 pointer-events-none z-20" />
-               
-               {/* Scan line effect overlay */}
-               <div className="absolute inset-0 bg-gradient-to-b from-transparent via-emerald-500/5 to-transparent h-1/3 w-full top-0 animate-[scan_4s_linear_infinite] z-20 pointer-events-none" />
-              </div>
-              
-              {/* Details List - More compact */}
-              <div className="space-y-1.5 font-mono text-[10px] mb-4">
-                <div className="flex justify-between border-b border-neutral-800/50 pb-1">
-                  <span className="text-neutral-500 uppercase">Clearance</span>
-                  <span className="text-emerald-500">LEVEL 05</span>
+              {/* ID Card Body */}
+              <div className="bg-[#0f0f0f]/95 p-4 pt-8 rounded-xl border border-white/10 shadow-2xl relative overflow-hidden backdrop-blur-sm">
+                <div className="text-center mb-4">
+                  <h3 className="text-white font-mono text-xl tracking-[0.2em] mb-1">ID: SK-P-01</h3>
+                  <p className="text-emerald-400 font-mono text-[9px] tracking-widest uppercase opacity-90">Authorized Personnel Only</p>
                 </div>
-                <div className="flex justify-between border-b border-neutral-800/50 pb-1">
-                  <span className="text-neutral-500 uppercase">Role</span>
-                  <span className="text-white font-bold">Cloud / AI Eng</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-neutral-500 uppercase">Status</span>
-                  <span className="text-emerald-500 animate-pulse">ACTIVE - TERMINAL</span>
-                </div>
-              </div>
 
-              {/* Barcode - Smaller */}
-              <div className="flex flex-col items-center">
-                <div className="w-full h-8 bg-white/90 rounded-[1px] flex items-end justify-around px-2 pt-1.5 overflow-hidden">
-                  {[...Array(40)].map((_, i) => (
-                    <div key={i} className={`bg-black ${Math.random() > 0.5 ? 'w-[1px]' : 'w-[2px]'} self-stretch`} style={{ height: `${Math.random() * 60 + 40}%` }} />
-                  ))}
-                </div>
-                <span className="text-[7px] text-neutral-500 mt-1 tracking-[0.4em] font-mono">2024//USER//AUTH_SK</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Column – Text & Swatches */}
-          <div className="flex-1 pt-6 md:pt-10">
-            {/* Title */}
-            <h2 className="text-4xl md:text-6xl font-bold text-white mb-2 rotate-[-1deg]" style={{ fontFamily: "'Caveat', cursive" }}>
-              About me
-            </h2>
-            {/* Scribble line */}
-            <svg className="w-56 h-4 mb-8 rotate-[-1deg] opacity-70" viewBox="0 0 200 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M2.5 5C50 2 150 8 197.5 5" stroke="#4ade80" strokeWidth="2" strokeLinecap="round" style={{ filter: "url(#roughness)" }}/>
-              <defs>
-                <filter id="roughness">
-                  <feTurbulence type="fractalNoise" baseFrequency="0.5" numOctaves="3" result="noise" />
-                  <feDisplacementMap in="SourceGraphic" in2="noise" scale="2" xChannelSelector="R" yChannelSelector="G" />
-                </filter>
-              </defs>
-            </svg>
-
-            {/* Handwritten intro block - slightly more compact for single view */}
-            <div className="text-neutral-300 leading-[1.8] md:leading-[2] pr-4 max-w-xl" style={{ fontFamily: "'Caveat', cursive", fontSize: "1.3rem", fontWeight: 600 }}>
-              <p className="mb-4 indent-8">
-                I'm a software engineer passionate about modern web technologies and cloud architecture. I enjoy bridging the gap between design and engineering, creating experiences that look beautiful and perform perfectly.
-              </p>
-              <p className="mb-4">
-                Currently, I'm building generative AI tools, diving deep into RAG systems, and exploring Next.js ecosystems. When I'm away from the keyboard, you'll find me exploring new coffee shops and plotting my next big project.
-              </p>
-            </div>
-
-            {/* Enhanced Security Stamp */}
-            <div className="relative flex mt-8 items-center justify-center md:justify-start">
-              
-              {/* Interesting Security Badge / Stamp */}
-              <div className="relative group/stamp cursor-default">
-                <div className="absolute inset-0 bg-emerald-500/20 rounded-full blur-xl group-hover/stamp:bg-emerald-500/30 transition-all duration-500" />
-                <div className="relative w-32 h-32 border-[4px] border-emerald-500/40 rounded-full flex items-center justify-center rotate-[-12deg] pointer-events-none mix-blend-screen overflow-hidden"
-                     style={{ maskImage: "url('https://www.transparenttextures.com/patterns/grunge-wall.png')", WebkitMaskImage: "url('https://www.transparenttextures.com/patterns/grunge-wall.png')" }}>
+                {/* Pixelated Photo Area */}
+                <div className="group relative w-full aspect-[1/1.1] overflow-hidden bg-black flex items-center justify-center border-2 border-neutral-800 rounded-lg mb-4 cursor-crosshair">
                   
-                  <div className="w-[85%] h-[85%] border-2 border-emerald-500/40 rounded-full flex flex-col items-center justify-center">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-emerald-500/60 mb-1">
-                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                      <circle cx="12" cy="11" r="3" />
-                      <line x1="12" y1="11" x2="12" y2="11.01" />
-                    </svg>
-                    <div className="uppercase text-emerald-500/70 font-bold tracking-tighter text-[10px]">Security Verified</div>
-                    <div className="text-emerald-500/80 font-black text-xl tracking-widest mt-0.5 border-y-2 border-emerald-500/50 py-0.5 w-full text-center">CORE_SYS</div>
-                    <div className="text-[8px] text-emerald-500/50 font-mono mt-1">SN: 882-P-X09</div>
+                  {/* Brighter Green/Gray/Black Pixels */}
+                  <PixelatedCanvas
+                    src="/portfolio_image-Photoroom.png"
+                    width={280}
+                    height={350}
+                    cellSize={5}
+                    dotScale={0.94}
+                    shape="square"
+                    backgroundColor="#000000"
+                    dropoutStrength={0.01} 
+                    interactive
+                    distortionStrength={5}
+                    distortionRadius={80}
+                    distortionMode="swirl"
+                    followSpeed={0.2}
+                    jitterStrength={2}
+                    jitterSpeed={2}
+                    sampleAverage
+                    grayscale={true}
+                    tintColor="#22c55e"
+                    tintStrength={0.45} 
+                    className="absolute inset-0 w-full h-full object-cover object-top opacity-100 z-10 brightness-110"
+                  />
+
+                  {/* UI Overlays */}
+                  <div className="absolute inset-0 border border-emerald-500/10 m-2 pointer-events-none z-20" />
+                  <div className="absolute top-1 left-1 w-2 h-2 border-t border-l border-emerald-500/40 pointer-events-none z-20" />
+                  <div className="absolute bottom-1 right-1 w-2 h-2 border-b border-r border-emerald-500/40 pointer-events-none z-20" />
+                  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-emerald-500/5 to-transparent h-1/3 w-full top-0 animate-[scan_4s_linear_infinite] z-20 pointer-events-none" />
+                </div>
+                
+                {/* Details List */}
+                <div className="space-y-1.5 font-mono text-[10px] mb-4">
+                  <div className="flex justify-between border-b border-neutral-800/50 pb-1">
+                    <span className="text-neutral-500 uppercase">Clearance</span>
+                    <span className="text-emerald-500">LEVEL 05</span>
+                  </div>
+                  <div className="flex justify-between border-b border-neutral-800/50 pb-1">
+                    <span className="text-neutral-500 uppercase">Role</span>
+                    <span className="text-white font-bold">Cloud / AI Eng</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-neutral-500 uppercase">Status</span>
+                    <span className="text-emerald-500 animate-pulse">ACTIVE - TERMINAL</span>
                   </div>
                 </div>
-                {/* Secondary 'Approved' text stamp offset */}
-                <div className="absolute -bottom-2 -left-6 border-2 border-amber-500/30 px-2 py-0.5 rounded rotate-[15deg] text-[10px] uppercase font-bold text-amber-500/40 tracking-widest mix-blend-screen"
+
+                {/* Barcode */}
+                <div className="flex flex-col items-center">
+                  <div className="w-full h-8 bg-white/90 rounded-[1px] flex items-end justify-around px-2 pt-1.5 overflow-hidden">
+                    {[...Array(40)].map((_, i) => (
+                      <div key={i} className={`bg-black ${Math.random() > 0.5 ? 'w-[1px]' : 'w-[2px]'} self-stretch`} style={{ height: `${Math.random() * 60 + 40}%` }} />
+                    ))}
+                  </div>
+                  <span className="text-[7px] text-neutral-500 mt-1 tracking-[0.4em] font-mono">2024//USER//AUTH_SK</span>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Right Column – Text Content */}
+            <div className="flex-1 pt-6 md:pt-10 z-10">
+              {/* Title */}
+              <h2 className="text-4xl md:text-6xl font-bold text-white mb-2 rotate-[-1deg] drop-shadow-sm" style={{ fontFamily: "'Caveat', cursive" }}>
+                About me
+              </h2>
+              {/* Scribble line */}
+              <svg className="w-56 h-4 mb-8 rotate-[-1deg] opacity-70" viewBox="0 0 200 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2.5 5C50 2 150 8 197.5 5" stroke="#4ade80" strokeWidth="2" strokeLinecap="round"/>
+              </svg>
+
+              {/* Handwritten intro block - Enhanced Visibility */}
+              <div className="text-neutral-100 leading-[1.8] md:leading-[2] pr-4 max-w-xl drop-shadow-md" style={{ fontFamily: "'Caveat', cursive", fontSize: "1.45rem", fontWeight: 700 }}>
+                <p className="mb-4 indent-8">
+                  I'm a software engineer passionate about modern web technologies and cloud architecture. I enjoy bridging the gap between design and engineering, creating experiences that look beautiful and perform perfectly.
+                </p>
+                <p className="mb-4">
+                  Currently, I'm building generative AI tools, diving deep into RAG systems, and exploring Next.js ecosystems. When I'm away from the keyboard, you'll find me exploring new coffee shops and plotting my next big project.
+                </p>
+              </div>
+
+            </div>
+
+            {/* Repositioned Security Stamp - Now Absolute to the Container */}
+            <div className="absolute bottom-6 right-8 md:bottom-12 md:right-16 z-20 pointer-events-none sm:pointer-events-auto">
+              <div className="relative group/stamp cursor-default">
+                <div className="absolute inset-0 bg-emerald-500/20 rounded-full blur-xl group-hover/stamp:bg-emerald-500/30 transition-all duration-500 opacity-0 group-hover/stamp:opacity-100" />
+                <div className="relative w-28 h-28 md:w-36 md:h-36 border-[4px] border-emerald-500/40 rounded-full flex items-center justify-center rotate-[-12deg] group-hover/stamp:rotate-[-5deg] transition-transform duration-500 bg-[#0a0a0a]/20 backdrop-blur-[2px]"
+                     style={{ maskImage: "url('https://www.transparenttextures.com/patterns/grunge-wall.png')", WebkitMaskImage: "url('https://www.transparenttextures.com/patterns/grunge-wall.png')" }}>
+                  <div className="w-[85%] h-[85%] border-2 border-emerald-500/40 rounded-full flex flex-col items-center justify-center text-center">
+                    <ShieldCheck className="w-6 h-6 md:w-8 md:h-8 text-emerald-500/70 mb-1" />
+                    <div className="uppercase text-emerald-500/70 font-bold tracking-tighter text-[8px] md:text-[10px]">Security Verified</div>
+                    <div className="text-emerald-500/80 font-black text-lg md:text-2xl tracking-widest mt-0.5 border-y-2 border-emerald-500/50 py-0.5 w-full">CORE_SYS</div>
+                    <div className="text-[7px] md:text-[9px] text-emerald-500/50 font-mono mt-1">SN: 882-P-X09</div>
+                  </div>
+                </div>
+                <div className="absolute -bottom-1 -left-4 md:-bottom-2 md:-left-6 border-2 border-amber-500/30 px-2 py-0.5 rounded rotate-[15deg] text-[8px] md:text-[11px] uppercase font-bold text-amber-500/40 tracking-widest bg-[#0a0a0a]/10 backdrop-blur-[1px]"
                      style={{ WebkitMaskImage: "url('https://www.transparenttextures.com/patterns/grunge-wall.png')" }}>
                   System Approved
                 </div>
               </div>
-
             </div>
+
           </div>
         </div>
-      </div> {/* Closing the floating paper container */}
         
         {/* Load Caveat handwriting font */}
         <style>{`@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&display=swap');`}</style>
