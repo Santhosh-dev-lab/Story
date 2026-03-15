@@ -5,8 +5,9 @@ import { motion } from "framer-motion";
 import { TracingBeam } from "@/components/ui/tracing-beam";
 import { HoverEffect } from "@/components/ui/card-hover-effect";
 import { Cover } from "@/components/ui/cover";
-import { BackgroundBeams } from "@/components/ui/background-beams";
+import { SpaceBackground } from "@/components/ui/space-background";
 import { MaskContainer } from "@/components/ui/svg-mask-effect";
+import { EncryptedText } from "@/components/ui/encrypted-text";
 import Image from "next/image";
 
 const FloatingInterests = () => {
@@ -97,98 +98,101 @@ export default function Home() {
 
   return (
     <main className="bg-black min-h-screen text-white w-full overflow-hidden">
-      {/* Hero Section */}
-      <div className="relative flex flex-col md:flex-row items-center justify-center min-h-screen px-4 md:px-12 antialiased overflow-hidden">
-        <BackgroundBeams className="z-0" />
-        
-        {/* Left Side - Name and Story */}
+      {/* Hero Section – fully responsive (mobile → desktop) */}
+      <SpaceBackground className="relative flex flex-col md:flex-row items-center justify-between min-h-screen w-full antialiased overflow-hidden">
+
+        {/* Left Side – Name */}
         <motion.div
-          initial={{ opacity: 0.0, x: -40 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{
-            delay: 0.3,
-            duration: 0.8,
-            ease: "easeInOut",
-          }}
-          className="relative flex flex-col gap-4 items-start justify-center px-4 z-10 w-full md:w-1/2 h-[60vh] md:h-screen"
+          initial={{ opacity: 0, x: -40 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.3, duration: 0.8, ease: "easeInOut" }}
+          className="relative flex flex-col items-start justify-center px-6 md:px-12 z-10 w-full md:w-1/2 pt-28 pb-8 md:py-0 md:h-screen -mt-8 md:-mt-16"
         >
           <MaskContainer
             revealText={
-              <h1 className="text-5xl md:text-6xl lg:text-8xl font-semibold max-w-7xl text-left relative z-20 py-6 leading-tight pointer-events-none">
+              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-semibold max-w-7xl text-left relative z-20 py-4 leading-tight pointer-events-none">
                 <span className="pointer-events-auto inline-block hover-target transition-opacity duration-300 hover:opacity-0 bg-clip-text text-transparent bg-gradient-to-b from-neutral-800 via-neutral-700 to-neutral-700 dark:from-neutral-800 dark:via-white dark:to-white cursor-default">
                   Santhosh
-                </span> <br /> 
+                </span> <br />
                 <span className="pointer-events-auto inline-block bg-clip-text text-transparent bg-gradient-to-b from-neutral-800 via-neutral-700 to-neutral-700 dark:from-neutral-800 dark:via-white dark:to-white">
                   <Cover>Kunam</Cover>
                 </span>
               </h1>
             }
-            className="h-[auto] w-full items-start justify-start !mx-0"
+            className="h-auto w-full items-start justify-start !mx-0"
           >
             <FloatingInterests />
           </MaskContainer>
+
+          {/* Encrypted description below name */}
+          <div className="mt-3 max-w-sm md:max-w-lg z-10">
+            <EncryptedText
+              text="Still learning. Still building. Still curious. That's pretty much the whole story."
+              className="text-sm md:text-lg text-white font-semibold leading-relaxed block tracking-wide"
+              duration={1600}
+            />
+          </div>
+
+          {/* Subtitle – visible on mobile below name */}
+          <p className="mt-4 text-neutral-400 text-sm sm:text-base max-w-xs leading-relaxed md:hidden">
+            Software Engineer · NextJS Developer · Cloud & AI Enthusiast
+          </p>
         </motion.div>
 
-        {/* Right Side - Image & Design Placeholder */}
+        {/* Right Side – Image & floating badges */}
         <motion.div
-          initial={{ opacity: 0.0, x: 40 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{
-            delay: 0.5,
-            duration: 0.8,
-            ease: "easeInOut",
-          }}
-          className="relative flex flex-col items-center justify-center w-full md:w-1/2 h-[40vh] md:h-screen z-10 gap-6"
+          initial={{ opacity: 0, x: 40 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.5, duration: 0.8, ease: "easeInOut" }}
+          className="relative flex items-end justify-center w-full md:w-1/2 h-[55vw] sm:h-[65vw] md:h-screen z-10 mt-4 md:mt-0"
         >
-          {/* User Portfolio Image */}
-          <div 
-            className="absolute right-0 bottom-0 w-full sm:w-[80vw] lg:w-[60vw] h-full flex items-end justify-end pointer-events-none z-0"
+          {/* Portrait Image with silhouette fade */}
+          <div
+            className="absolute inset-0 pointer-events-none"
             style={{
-              maskImage: "linear-gradient(to right, transparent, black 60%), linear-gradient(to top, transparent, black 15%)",
-              WebkitMaskImage: "linear-gradient(to right, transparent 5%, black 60%), linear-gradient(to top, transparent 5%, black 15%)",
+              maskImage: "linear-gradient(to right, transparent 0%, black 55%), linear-gradient(to top, transparent 0%, black 18%)",
+              WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 55%), linear-gradient(to top, transparent 0%, black 18%)",
               maskComposite: "intersect",
-              WebkitMaskComposite: "source-in"
+              WebkitMaskComposite: "source-in",
             }}
           >
-            {/* Dark vignette effect immediately over the image */}
-            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/10 to-transparent z-20" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent z-20" />
-            
-            <Image 
+            <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/10 to-transparent z-20" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent z-20" />
+            <Image
               src="/portfolio_image-Photoroom.png"
               alt="Santhosh Kunam"
               fill
-              className="object-contain object-right-bottom drop-shadow-2xl z-10 scale-95 md:scale-100 origin-bottom-right"
+              className="object-contain object-bottom drop-shadow-2xl z-10"
               priority
             />
           </div>
 
-          {/* Floating Personal & Professional Badges */}
-          <motion.div 
+          {/* Floating badges – hidden on small mobile, shown sm+ */}
+          <motion.div
             animate={{ y: [0, -10, 0] }}
             transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-            className="absolute top-[20%] left-0 xl:left-[-10%] bg-neutral-200/90 backdrop-blur-sm border border-neutral-300/50 text-neutral-900 text-xs md:text-sm font-semibold px-4 md:px-6 py-2 md:py-3 rounded-full shadow-2xl z-20"
+            className="hidden sm:block absolute top-[18%] left-2 md:left-[-5%] bg-white/90 backdrop-blur-sm border border-neutral-200 text-neutral-900 text-xs md:text-sm font-semibold px-4 py-2 rounded-full shadow-xl z-30"
           >
             Software Engineer
           </motion.div>
 
-          <motion.div 
-            animate={{ y: [0, 15, 0] }}
+          <motion.div
+            animate={{ y: [0, 12, 0] }}
             transition={{ repeat: Infinity, duration: 5, ease: "easeInOut", delay: 1 }}
-            className="absolute bottom-[35%] right-0 xl:right-[-5%] bg-neutral-200/90 backdrop-blur-sm border border-neutral-300/50 text-neutral-900 text-xs md:text-sm font-semibold px-4 md:px-6 py-2 md:py-3 rounded-full shadow-2xl z-20"
+            className="hidden sm:block absolute bottom-[32%] right-2 md:right-4 bg-white/90 backdrop-blur-sm border border-neutral-200 text-neutral-900 text-xs md:text-sm font-semibold px-4 py-2 rounded-full shadow-xl z-30"
           >
-            Cinematographer & Artist
+            Open Source Contributor
           </motion.div>
 
-          <motion.div 
+          <motion.div
             animate={{ y: [0, -12, 0] }}
             transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut", delay: 2 }}
-            className="absolute top-[10%] right-[5%] xl:right-[15%] bg-neutral-200/90 backdrop-blur-sm border border-neutral-300/50 text-neutral-900 text-xs md:text-sm font-semibold px-4 md:px-6 py-2 md:py-3 rounded-full shadow-2xl z-20"
+            className="hidden sm:block absolute top-[8%] right-4 md:right-10 bg-white/90 backdrop-blur-sm border border-neutral-200 text-neutral-900 text-xs md:text-sm font-semibold px-4 py-2 rounded-full shadow-xl z-30"
           >
-            Music & Cricket Enthusiast
+            Cloud & AI Enthusiast
           </motion.div>
         </motion.div>
-      </div>
+      </SpaceBackground>
 
       {/* Storytelling About Section */}
       <section className="py-20 w-full bg-black">

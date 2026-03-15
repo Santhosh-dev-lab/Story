@@ -46,8 +46,9 @@ export const MaskContainer = ({
       className={cn("relative w-full h-[30vh] md:h-[50vh] flex items-center justify-start", className)}
     >
       <motion.div
-        className="absolute inset-0 z-30 flex items-center justify-start text-6xl pointer-events-none bg-white font-sans"
+        className="absolute inset-0 z-30 flex items-center justify-start text-6xl pointer-events-none font-sans"
         style={{
+          backgroundColor: "#dbeeff",
           WebkitMaskImage: "url('/mask.svg')",
           maskImage: "url('/mask.svg')",
           WebkitMaskRepeat: "no-repeat",
