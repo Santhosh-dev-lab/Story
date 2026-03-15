@@ -185,7 +185,7 @@ export default function Home() {
           initial={{ opacity: 0, x: -40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.3, duration: 0.8, ease: "easeInOut" }}
-          className="relative flex flex-col items-start justify-center px-6 md:px-12 z-10 w-full md:w-1/2 pt-20 pb-4 md:py-0 md:h-screen md:-mt-16"
+          className="relative flex flex-col items-start justify-center px-6 md:px-12 z-10 w-full md:w-1/2 pt-32 pb-4 md:py-0 md:h-screen md:-mt-16"
         >
           <MaskContainer
             revealText={
@@ -219,7 +219,7 @@ export default function Home() {
           initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.5, duration: 0.8, ease: "easeInOut" }}
-          className="relative flex items-end justify-center w-full md:w-1/2 h-[75vw] sm:h-[75vw] md:h-screen z-10 mt-2 md:mt-0"
+          className="relative flex items-end justify-center w-full md:w-1/2 h-[75vw] sm:h-[75vw] md:h-screen z-10 -mt-14 md:mt-0"
         >
           {/* Portrait Image with silhouette fade */}
           <div
