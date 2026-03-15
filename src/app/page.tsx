@@ -219,7 +219,7 @@ export default function Home() {
           initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.5, duration: 0.8, ease: "easeInOut" }}
-          className="relative flex items-end justify-center w-full md:w-1/2 h-[75vw] sm:h-[75vw] md:h-screen z-10 -mt-28 md:mt-0"
+          className="relative flex items-end justify-center w-full md:w-1/2 h-[75vw] sm:h-[75vw] md:h-screen z-10 -mt-44 md:mt-0"
         >
           {/* Portrait Image with silhouette fade */}
           <div
