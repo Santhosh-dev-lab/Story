@@ -8,11 +8,31 @@ import { Cover } from "@/components/ui/cover";
 
 import { MaskContainer } from "@/components/ui/svg-mask-effect";
 import { EncryptedText } from "@/components/ui/encrypted-text";
+import { Spotlight } from "@/components/ui/spotlight";
+import { EvervaultCard } from "@/components/ui/evervault-card";
+import { DraggableSkills } from "@/components/ui/draggable-skills";
+import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
+import { Meteors } from "@/components/ui/meteors";
+import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
 import { TerminalBadge } from "@/components/ui/terminal-badge";
 import { FloatingDock } from "@/components/ui/floating-dock";
 
 import Image from "next/image";
-import { ShieldCheck, Mail, Github, Linkedin, ExternalLink } from "lucide-react";
+import {
+  Brain,
+  Cpu,
+  Coffee,
+  Sparkles,
+  Globe,
+  Rocket,
+  ShieldCheck,
+  Mail,
+  Github,
+  Linkedin,
+  ExternalLink,
+  Camera,
+  Laptop
+} from "lucide-react";
 
 const FloatingInterests = () => {
   const [mounted, setMounted] = useState(false);
@@ -290,154 +310,105 @@ export default function Home() {
       </div>
 
       {/* About Me – Semi-Transparent Scrapbook Layout */}
-      <section id="about" className="min-h-screen relative w-full overflow-hidden flex items-center justify-center bg-transparent py-12">
-        
-        {/* The Paper Content Container - Floating on the space background */}
-        <div className="w-full max-w-6xl mx-auto px-6 md:px-12 relative z-10 bg-[#0a0a0a]/60 backdrop-blur-xl rounded-[2.5rem] border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.5)] overflow-hidden py-10 md:py-16">
-          
-          {/* Background Layer (Separated to fix visibility) */}
-          <div className="absolute inset-0 z-0 pointer-events-none opacity-100"
-               style={{ 
-                 backgroundImage: "url('/design-space-paper-textured-background.jpg')",
-                 backgroundSize: "cover",
-                 backgroundPosition: "center",
-                 filter: "grayscale(1) brightness(0.6) contrast(1.1)"
-               }} />
+      <section id="about" className="py-20 md:py-32 bg-black relative overflow-hidden">
+        <Spotlight
+          className="-top-40 left-0 md:left-60 md:-top-20"
+          fill="white"
+        />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="mb-12"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">About Me</h2>
+            <div className="h-1 w-20 bg-neutral-800 rounded-full" />
+          </motion.div>
 
-          {/* Scratches / Scraped Overlay */}
-          <div className="absolute inset-0 opacity-[0.05] pointer-events-none z-0 mix-blend-overlay"
-               style={{ backgroundImage: "repeating-linear-gradient(45deg, transparent, transparent 100px, #fff 100px, #fff 101px), repeating-linear-gradient(-45deg, transparent, transparent 150px, #fff 150px, #fff 151px)" }} />
-
-          {/* Decorative Tape Elements for Scrapbook Effect - Intensified */}
-          <div className="absolute top-4 left-1/4 w-24 h-8 bg-white/15 rotate-[-15deg] backdrop-blur-sm border border-white/10 z-20 opacity-60" style={{ clipPath: "polygon(0% 10%, 100% 0%, 95% 90%, 5% 100%)" }} />
-          <div className="absolute top-1/2 -right-4 w-20 h-10 bg-white/10 rotate-[75deg] backdrop-blur-sm border border-white/5 z-20 opacity-30" style={{ clipPath: "polygon(10% 0%, 90% 10%, 100% 100%, 0% 90%)" }} />
-          <div className="absolute bottom-8 right-1/4 w-28 h-10 bg-white/15 rotate-[10deg] backdrop-blur-sm border border-white/10 z-20 opacity-50" style={{ clipPath: "polygon(5% 0%, 95% 15%, 100% 90%, 0% 85%)" }} />
-
-          {/* Binding edge - more 'scrapped' and aligned */}
-          <div className="absolute top-0 bottom-0 left-0 w-4 md:w-10 bg-[#050505] border-r border-white/15 z-1" />
-          
-          {/* Torn paper edge effect - intensified jaggedness */}
-          <div className="absolute top-0 bottom-0 left-4 md:left-10 w-6 bg-white/15 z-1" 
-               style={{ clipPath: "polygon(0% 0%, 100% 0%, 75% 2%, 95% 5%, 80% 8%, 100% 11%, 70% 14%, 90% 17%, 85% 20%, 100% 23%, 75% 26%, 95% 29%, 80% 32%, 100% 35%, 70% 38%, 90% 41%, 85% 44%, 100% 47%, 75% 50%, 95% 53%, 80% 56%, 100% 59%, 70% 62%, 90% 65%, 85% 68%, 100% 71%, 75% 74%, 95% 77%, 80% 80%, 100% 83%, 70% 86%, 90% 89%, 85% 92%, 100% 95%, 75% 98%, 100% 100%, 0% 100%)" }} />
-
-          <div className="w-full relative z-10 flex flex-col md:flex-row gap-8 md:gap-12 items-center md:items-start pl-8 md:pl-20 pr-6 md:pr-12">
-
-            {/* Left Column – Animated 'Live' ID Card */}
-            <motion.div 
-              initial={{ rotate: -1 }}
-              animate={{ 
-                y: [0, -12, 0],
-                rotate: [-2, 1, -2]
-              }}
-              transition={{
-                duration: 4,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-              className="relative flex-shrink-0 w-full md:w-[280px]"
-            >
-              {/* Paperclip - perfectly aligned */}
-              <div className="absolute -top-10 left-1/2 -translate-x-1/2 z-40 drop-shadow-lg">
-                <svg width="40" height="80" viewBox="0 0 40 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="opacity-95">
-                  <path d="M12,85 C6.5,85 2,80.5 2,75 L2,20 C2,10.6 9.6,3 19,3 C22.9,3 26,6.1 26,10 L26,65 C26,68.9 22.9,72 19,72 L12,72 C9.2,72 7,69.8 7,67 L7,25" stroke="#888" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </div>
-
-              {/* ID Card Body */}
-              <div className="bg-[#0f0f0f]/95 p-4 pt-8 rounded-xl border border-white/10 shadow-2xl relative overflow-hidden backdrop-blur-sm">
-                <div className="text-center mb-4">
-                  <h3 className="text-white font-mono text-xl tracking-[0.2em] mb-1">ID: SK-P-01</h3>
-                  <p className="text-emerald-400 font-mono text-[9px] tracking-widest uppercase opacity-90">Authorized Personnel Only</p>
-                </div>
-
-                {/* Pixelated Photo Area */}
-                <div className="group relative w-full aspect-[1/1.1] overflow-hidden bg-black flex items-center justify-center border-2 border-neutral-800 rounded-lg mb-4 cursor-crosshair">
-                  
-                  {/* Brighter Green/Gray/Black Pixels */}
-
-
-                  {/* UI Overlays */}
-                  <div className="absolute inset-0 border border-emerald-500/10 m-2 pointer-events-none z-20" />
-                  <div className="absolute top-1 left-1 w-2 h-2 border-t border-l border-emerald-500/40 pointer-events-none z-20" />
-                  <div className="absolute bottom-1 right-1 w-2 h-2 border-b border-r border-emerald-500/40 pointer-events-none z-20" />
-                  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-emerald-500/5 to-transparent h-1/3 w-full top-0 animate-[scan_4s_linear_infinite] z-20 pointer-events-none" />
-                </div>
-                
-                {/* Details List */}
-                <div className="space-y-1.5 font-mono text-[10px] mb-4">
-                  <div className="flex justify-between border-b border-neutral-800/50 pb-1">
-                    <span className="text-neutral-500 uppercase">Clearance</span>
-                    <span className="text-emerald-500">LEVEL 05</span>
-                  </div>
-                  <div className="flex justify-between border-b border-neutral-800/50 pb-1">
-                    <span className="text-neutral-500 uppercase">Role</span>
-                    <span className="text-white font-bold">Cloud / AI Eng</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-neutral-500 uppercase">Status</span>
-                    <span className="text-emerald-500 animate-pulse">ACTIVE - TERMINAL</span>
+          <BentoGrid className="max-w-7xl mx-auto md:auto-rows-[30rem]">
+            {/* Main Bio Card */}
+            <BentoGridItem
+              title="The Narrative"
+              description={
+                <div className="space-y-6">
+                  <TextGenerateEffect 
+                    words="I'm a software engineer dedicated to building the next generation of web intelligence. By bridging the gap between rigorous engineering and intuitive design, I create performance-first applications that feel like magic. My work is driven by a deep curiosity for how things work and a relentless pursuit of pixel-perfect execution." 
+                    className="text-sm font-normal text-neutral-300 leading-relaxed"
+                  />
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="p-3 rounded-lg bg-neutral-900/50 border border-neutral-800/50">
+                      <p className="text-[10px] text-emerald-500 font-mono mb-1 uppercase tracking-tighter">// EXPLORING</p>
+                      <p className="text-[11px] text-neutral-400">LLM Orchestration, RAG Architectures, Vector Databases</p>
+                    </div>
+                    <div className="p-3 rounded-lg bg-neutral-900/50 border border-neutral-800/50">
+                      <p className="text-[10px] text-amber-500 font-mono mb-1 uppercase tracking-tighter">// INTERESTS</p>
+                      <p className="text-[11px] text-neutral-400">Cinematography, Mechanical Keyboards, Specialty Coffee</p>
+                    </div>
                   </div>
                 </div>
-
-                <div className="flex flex-col items-center">
-                  <div className="w-full h-8 bg-white/90 rounded-[1px] flex items-end justify-around px-2 pt-1.5 overflow-hidden">
-                    {[...Array(40)].map((_, i) => (
-                      <div key={i} className={`bg-black ${i % 3 === 0 ? 'w-[2px]' : 'w-[1px]'} self-stretch`} style={{ height: `${40 + (i * 7) % 50}%` }} />
-                    ))}
-                  </div>
-                  <span className="text-[7px] text-neutral-500 mt-1 tracking-[0.4em] font-mono">2024//USER//AUTH_SK</span>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Right Column – Text Content */}
-            <div className="flex-1 pt-6 md:pt-10 z-10">
-              {/* Title */}
-              <h2 className="text-4xl md:text-6xl font-bold text-white mb-2 rotate-[-1deg] drop-shadow-sm" style={{ fontFamily: "'Caveat', cursive" }}>
-                About me
-              </h2>
-              {/* Scribble line */}
-              <svg className="w-56 h-4 mb-8 rotate-[-1deg] opacity-70" viewBox="0 0 200 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M2.5 5C50 2 150 8 197.5 5" stroke="#4ade80" strokeWidth="2" strokeLinecap="round"/>
-              </svg>
-
-              {/* Handwritten intro block - Enhanced Visibility */}
-              <div className="text-neutral-100 leading-[1.8] md:leading-[2] pr-4 max-w-xl drop-shadow-md" style={{ fontFamily: "'Caveat', cursive", fontSize: "1.45rem", fontWeight: 700 }}>
-                <p className="mb-4 indent-8">
-                  I'm a software engineer passionate about modern web technologies and cloud architecture. I enjoy bridging the gap between design and engineering, creating experiences that look beautiful and perform perfectly.
-                </p>
-                <p className="mb-4">
-                  Currently, I'm building generative AI tools, diving deep into RAG systems, and exploring Next.js ecosystems. When I'm away from the keyboard, you'll find me exploring new coffee shops and plotting my next big project.
-                </p>
-              </div>
-
-            </div>
-
-            {/* Repositioned Security Stamp - Now Absolute to the Container */}
-            <div className="absolute bottom-6 right-8 md:bottom-12 md:right-16 z-20 pointer-events-none sm:pointer-events-auto">
-              <div className="relative group/stamp cursor-default">
-                <div className="absolute inset-0 bg-emerald-500/20 rounded-full blur-xl group-hover/stamp:bg-emerald-500/30 transition-all duration-500 opacity-0 group-hover/stamp:opacity-100" />
-                <div className="relative w-28 h-28 md:w-36 md:h-36 border-[4px] border-emerald-500/40 rounded-full flex items-center justify-center rotate-[-12deg] group-hover/stamp:rotate-[-5deg] transition-transform duration-500 bg-[#0a0a0a]/20 backdrop-blur-[2px]"
-                     style={{ maskImage: "url('https://www.transparenttextures.com/patterns/grunge-wall.png')", WebkitMaskImage: "url('https://www.transparenttextures.com/patterns/grunge-wall.png')" }}>
-                  <div className="w-[85%] h-[85%] border-2 border-emerald-500/40 rounded-full flex flex-col items-center justify-center text-center">
-                    <ShieldCheck className="w-6 h-6 md:w-8 md:h-8 text-emerald-500/70 mb-1" />
-                    <div className="uppercase text-emerald-500/70 font-bold tracking-tighter text-[8px] md:text-[10px]">Security Verified</div>
-                    <div className="text-emerald-500/80 font-black text-lg md:text-2xl tracking-widest mt-0.5 border-y-2 border-emerald-500/50 py-0.5 w-full">CORE_SYS</div>
-                    <div className="text-[7px] md:text-[9px] text-emerald-500/50 font-mono mt-1">SN: 882-P-X09</div>
+              }
+              header={<div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl border border-neutral-800 items-center justify-center relative overflow-hidden group/narrative">
+                <Image 
+                  src="/images/bento_narrative_bg.png"
+                  alt="Narrative Background"
+                  fill
+                  className="object-cover opacity-30 group-hover/narrative:scale-110 transition-transform duration-1000"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent z-[1]" />
+                <div className="relative z-10 p-8 flex flex-col items-center">
+                  <Brain className="h-16 w-16 text-white/40 mb-4 filter drop-shadow-[0_0_15px_rgba(16,185,129,0.2)]" />
+                  <div className="px-4 py-1 rounded-full border border-neutral-700 bg-neutral-800/50 backdrop-blur-sm text-[10px] font-mono text-neutral-400">
+                    SINCERE_ENGINEERING_V4.2
                   </div>
                 </div>
-                <div className="absolute -bottom-1 -left-4 md:-bottom-2 md:-left-6 border-2 border-amber-500/30 px-2 py-0.5 rounded rotate-[15deg] text-[8px] md:text-[11px] uppercase font-bold text-amber-500/40 tracking-widest bg-[#0a0a0a]/10 backdrop-blur-[1px]"
-                     style={{ WebkitMaskImage: "url('https://www.transparenttextures.com/patterns/grunge-wall.png')" }}>
-                  System Approved
-                </div>
-              </div>
-            </div>
+              </div>}
+              className="md:col-span-2"
+              icon={<Sparkles className="h-4 w-4 text-emerald-500" />}
+            />
 
-          </div>
+            {/* Tech Arsenal Card */}
+            <BentoGridItem
+              title="Tech Stack Sandbox"
+              description="An interactive visualization of my core competencies. Go ahead, toss them around — I promise they won't break the build."
+              header={<div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl border border-neutral-800 relative overflow-hidden group/tech bg-black">
+                <DraggableSkills />
+              </div>}
+              icon={<Cpu className="h-4 w-4 text-emerald-500" />}
+            />
+
+            {/* Status / Security Card */}
+            <BentoGridItem
+              title="Operational Status"
+              description="Continuous integration, continuous deployment, and continuous excellence. Monitoring core vitals across all production systems."
+              header={<div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl border border-neutral-800 flex-col items-center justify-center group/status relative overflow-hidden bg-black">
+                <Image 
+                  src="/images/bento_status_bg.png"
+                  alt="Status Background"
+                  fill
+                  className="object-cover opacity-20"
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black z-[1]" />
+                <Meteors number={30} />
+                <div className="relative z-10 flex flex-col items-center">
+                  <div className="p-4 rounded-2xl bg-emerald-500/5 border border-emerald-500/20 backdrop-blur-sm mb-4 group-hover/status:border-emerald-500/50 transition-all duration-700">
+                    <ShieldCheck className="w-16 h-16 text-emerald-500/40 group-hover/status:text-emerald-500 transition-all duration-700 group-hover/status:scale-110" />
+                  </div>
+                  <div className="flex flex-col items-center space-y-2">
+                    <div className="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[10px] font-mono text-emerald-400 tracking-widest font-bold">
+                      SYSTEM_LOAD: OPTIMAL // 0.04ms
+                    </div>
+                    <div className="text-[9px] uppercase font-mono text-neutral-600 tracking-[0.2em]">
+                      LATENCY: 12ms // UPTIME: 99.9%
+                    </div>
+                  </div>
+                </div>
+              </div>}
+              className="md:col-span-3"
+              icon={<Rocket className="h-4 w-4 text-emerald-500" />}
+            />
+          </BentoGrid>
         </div>
-        
-        {/* Load Caveat handwriting font */}
-        <style>{`@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&display=swap');`}</style>
       </section>
 
 
