@@ -5,12 +5,12 @@ import { motion } from "framer-motion";
 import { TracingBeam } from "@/components/ui/tracing-beam";
 import { HoverEffect } from "@/components/ui/card-hover-effect";
 import { Cover } from "@/components/ui/cover";
-import { SpaceBackground } from "@/components/ui/space-background";
+
 import { MaskContainer } from "@/components/ui/svg-mask-effect";
 import { EncryptedText } from "@/components/ui/encrypted-text";
 import { TerminalBadge } from "@/components/ui/terminal-badge";
 import { FloatingDock } from "@/components/ui/floating-dock";
-import { PixelatedCanvas } from "@/components/ui/pixelated-canvas";
+
 import Image from "next/image";
 import { ShieldCheck, Mail, Github, Linkedin, ExternalLink } from "lucide-react";
 
@@ -180,7 +180,8 @@ export default function Home() {
         />
       </div>
       {/* Hero Section – fully responsive (mobile → desktop) */}
-      <SpaceBackground className="relative flex flex-col md:flex-row items-center justify-between h-[100dvh] md:min-h-screen w-full antialiased overflow-hidden">
+      <div className="relative flex flex-col md:flex-row items-center justify-between h-[100dvh] md:min-h-screen w-full antialiased overflow-hidden bg-black">
+
 
         {/* Left Side – Name */}
         <motion.div
@@ -286,7 +287,7 @@ export default function Home() {
             />
           </motion.div>
         </motion.div>
-      </SpaceBackground>
+      </div>
 
       {/* About Me – Semi-Transparent Scrapbook Layout */}
       <section id="about" className="min-h-screen relative w-full overflow-hidden flex items-center justify-center bg-transparent py-12">
@@ -353,28 +354,7 @@ export default function Home() {
                 <div className="group relative w-full aspect-[1/1.1] overflow-hidden bg-black flex items-center justify-center border-2 border-neutral-800 rounded-lg mb-4 cursor-crosshair">
                   
                   {/* Brighter Green/Gray/Black Pixels */}
-                  <PixelatedCanvas
-                    src="/portfolio_image-Photoroom.png"
-                    width={280}
-                    height={350}
-                    cellSize={5}
-                    dotScale={0.94}
-                    shape="square"
-                    backgroundColor="#000000"
-                    dropoutStrength={0.01} 
-                    interactive
-                    distortionStrength={5}
-                    distortionRadius={80}
-                    distortionMode="swirl"
-                    followSpeed={0.2}
-                    jitterStrength={2}
-                    jitterSpeed={2}
-                    sampleAverage
-                    grayscale={true}
-                    tintColor="#22c55e"
-                    tintStrength={0.45} 
-                    className="absolute inset-0 w-full h-full object-cover object-top opacity-100 z-10 brightness-110"
-                  />
+
 
                   {/* UI Overlays */}
                   <div className="absolute inset-0 border border-emerald-500/10 m-2 pointer-events-none z-20" />
@@ -399,11 +379,10 @@ export default function Home() {
                   </div>
                 </div>
 
-                {/* Barcode */}
                 <div className="flex flex-col items-center">
                   <div className="w-full h-8 bg-white/90 rounded-[1px] flex items-end justify-around px-2 pt-1.5 overflow-hidden">
                     {[...Array(40)].map((_, i) => (
-                      <div key={i} className={`bg-black ${Math.random() > 0.5 ? 'w-[1px]' : 'w-[2px]'} self-stretch`} style={{ height: `${Math.random() * 60 + 40}%` }} />
+                      <div key={i} className={`bg-black ${i % 3 === 0 ? 'w-[2px]' : 'w-[1px]'} self-stretch`} style={{ height: `${40 + (i * 7) % 50}%` }} />
                     ))}
                   </div>
                   <span className="text-[7px] text-neutral-500 mt-1 tracking-[0.4em] font-mono">2024//USER//AUTH_SK</span>
