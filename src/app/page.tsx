@@ -144,7 +144,7 @@ export default function Home() {
           initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.5, duration: 0.8, ease: "easeInOut" }}
-          className="relative flex items-end justify-center w-full md:w-1/2 h-[55vw] sm:h-[65vw] md:h-screen z-10 mt-4 md:mt-0"
+          className="relative flex items-end justify-center w-full md:w-1/2 h-[65vw] sm:h-[75vw] md:h-screen z-10 mt-4 md:mt-0"
         >
           {/* Portrait Image with silhouette fade */}
           <div
@@ -162,34 +162,87 @@ export default function Home() {
               src="/portfolio_image-Photoroom.png"
               alt="Santhosh Kunam"
               fill
-              className="object-contain object-bottom drop-shadow-2xl z-10"
+              className="object-contain object-bottom drop-shadow-2xl z-10 scale-110 origin-bottom -translate-x-8 md:-translate-x-12"
               priority
             />
           </div>
 
-          {/* Floating badges – hidden on small mobile, shown sm+ */}
+          {/* Terminal Badge 1 – whoami */}
           <motion.div
             animate={{ y: [0, -10, 0] }}
             transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-            className="hidden sm:block absolute top-[18%] left-2 md:left-[-5%] bg-white/90 backdrop-blur-sm border border-neutral-200 text-neutral-900 text-xs md:text-sm font-semibold px-4 py-2 rounded-full shadow-xl z-30"
+            className="hidden sm:block absolute top-[18%] left-0 md:left-[-5%] z-30 w-52 md:w-60"
+            style={{ filter: "drop-shadow(0 0 10px rgba(74,222,128,0.25))" }}
           >
-            Software Engineer
+            {/* Title bar */}
+            <div className="flex items-center gap-1.5 bg-neutral-800 px-3 py-1.5 rounded-t-lg border border-neutral-700">
+              <span className="w-2.5 h-2.5 rounded-full bg-red-500"></span>
+              <span className="w-2.5 h-2.5 rounded-full bg-yellow-500"></span>
+              <span className="w-2.5 h-2.5 rounded-full bg-green-500"></span>
+              <span className="ml-2 text-neutral-400 text-[10px] font-mono">bash — 80×24</span>
+            </div>
+            {/* Body */}
+            <div className="bg-neutral-950 border border-t-0 border-neutral-700 rounded-b-lg px-3 py-2 font-mono text-xs md:text-sm">
+              <span className="text-green-400">santhosh@dev</span>
+              <span className="text-neutral-500">:</span>
+              <span className="text-blue-400">~</span>
+              <span className="text-neutral-400"> $ </span>
+              <span className="text-white">whoami</span>
+              <br />
+              <span className="text-green-300">Software Engineer</span>
+              <span className="animate-pulse text-green-400">▌</span>
+            </div>
           </motion.div>
 
+          {/* Terminal Badge 2 – git log */}
           <motion.div
             animate={{ y: [0, 12, 0] }}
             transition={{ repeat: Infinity, duration: 5, ease: "easeInOut", delay: 1 }}
-            className="hidden sm:block absolute bottom-[32%] right-2 md:right-4 bg-white/90 backdrop-blur-sm border border-neutral-200 text-neutral-900 text-xs md:text-sm font-semibold px-4 py-2 rounded-full shadow-xl z-30"
+            className="hidden sm:block absolute bottom-[32%] right-0 md:right-4 z-30 w-56 md:w-64"
+            style={{ filter: "drop-shadow(0 0 10px rgba(74,222,128,0.25))" }}
           >
-            Open Source Contributor
+            <div className="flex items-center gap-1.5 bg-neutral-800 px-3 py-1.5 rounded-t-lg border border-neutral-700">
+              <span className="w-2.5 h-2.5 rounded-full bg-red-500"></span>
+              <span className="w-2.5 h-2.5 rounded-full bg-yellow-500"></span>
+              <span className="w-2.5 h-2.5 rounded-full bg-green-500"></span>
+              <span className="ml-2 text-neutral-400 text-[10px] font-mono">zsh — 80×24</span>
+            </div>
+            <div className="bg-neutral-950 border border-t-0 border-neutral-700 rounded-b-lg px-3 py-2 font-mono text-xs md:text-sm">
+              <span className="text-green-400">santhosh@dev</span>
+              <span className="text-neutral-500">:</span>
+              <span className="text-blue-400">~/projects</span>
+              <span className="text-neutral-400"> $ </span>
+              <span className="text-white">rag-pipeline --run</span>
+              <br />
+              <span className="text-yellow-400">» </span>
+              <span className="text-green-300">RAG system ready</span>
+              <span className="animate-pulse text-green-400">▌</span>
+            </div>
           </motion.div>
 
+          {/* Terminal Badge 3 – cloud deploy */}
           <motion.div
             animate={{ y: [0, -12, 0] }}
             transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut", delay: 2 }}
-            className="hidden sm:block absolute top-[8%] right-4 md:right-10 bg-white/90 backdrop-blur-sm border border-neutral-200 text-neutral-900 text-xs md:text-sm font-semibold px-4 py-2 rounded-full shadow-xl z-30"
+            className="hidden sm:block absolute top-[8%] right-2 md:right-10 z-30 w-52 md:w-60"
+            style={{ filter: "drop-shadow(0 0 10px rgba(74,222,128,0.25))" }}
           >
-            Cloud & AI Enthusiast
+            <div className="flex items-center gap-1.5 bg-neutral-800 px-3 py-1.5 rounded-t-lg border border-neutral-700">
+              <span className="w-2.5 h-2.5 rounded-full bg-red-500"></span>
+              <span className="w-2.5 h-2.5 rounded-full bg-yellow-500"></span>
+              <span className="w-2.5 h-2.5 rounded-full bg-green-500"></span>
+              <span className="ml-2 text-neutral-400 text-[10px] font-mono">ssh — cloud</span>
+            </div>
+            <div className="bg-neutral-950 border border-t-0 border-neutral-700 rounded-b-lg px-3 py-2 font-mono text-xs md:text-sm">
+              <span className="text-green-400">santhosh@aws</span>
+              <span className="text-neutral-500">:</span>
+              <span className="text-blue-400">~</span>
+              <span className="text-neutral-400"> $ </span>
+              <span className="text-white">aws iam get-user</span>
+              <br />
+              <span className="text-green-300">✓ AWS Cloud Practitioner</span>
+              <span className="animate-pulse text-green-400">▌</span>
+            </div>
           </motion.div>
         </motion.div>
       </SpaceBackground>
