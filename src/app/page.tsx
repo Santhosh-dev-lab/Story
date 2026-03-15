@@ -102,7 +102,7 @@ export default function Home() {
     <main className="bg-black min-h-screen text-white w-full overflow-hidden">
 
       {/* Floating Navigation Dock – top left */}
-      <div className="fixed top-12 left-12 z-50">
+      <div className="fixed top-4 left-6 md:top-12 md:left-12 z-50">
         <FloatingDock
           items={[
             {
@@ -178,18 +178,18 @@ export default function Home() {
         />
       </div>
       {/* Hero Section – fully responsive (mobile → desktop) */}
-      <SpaceBackground className="relative flex flex-col md:flex-row items-center justify-between min-h-screen w-full antialiased overflow-hidden">
+      <SpaceBackground className="relative flex flex-col md:flex-row items-center justify-between h-[100dvh] md:min-h-screen w-full antialiased overflow-hidden">
 
         {/* Left Side – Name */}
         <motion.div
           initial={{ opacity: 0, x: -40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.3, duration: 0.8, ease: "easeInOut" }}
-          className="relative flex flex-col items-start justify-center px-6 md:px-12 z-10 w-full md:w-1/2 pt-32 pb-4 md:py-0 md:h-screen md:-mt-16"
+          className="relative flex flex-col items-start justify-start md:justify-center px-5 md:px-12 z-10 w-full md:w-1/2 pt-[90px] md:pt-0 md:py-0 md:h-screen md:-mt-16 flex-shrink-0"
         >
           <MaskContainer
             revealText={
-              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-semibold max-w-7xl text-left relative z-20 py-4 leading-tight pointer-events-none">
+              <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-semibold max-w-7xl text-left relative z-20 py-2 md:py-4 leading-tight pointer-events-none">
                 <span className="pointer-events-auto inline-block hover-target transition-opacity duration-300 hover:opacity-0 bg-clip-text text-transparent bg-gradient-to-b from-neutral-800 via-neutral-700 to-neutral-700 dark:from-neutral-800 dark:via-white dark:to-white cursor-default">
                   Santhosh
                 </span> <br />
@@ -204,10 +204,10 @@ export default function Home() {
           </MaskContainer>
 
           {/* Encrypted description below name */}
-          <div className="mt-3 max-w-sm md:max-w-lg z-10">
+          <div className="mt-1 md:mt-3 max-w-sm md:max-w-lg z-10">
             <EncryptedText
               text="Still learning. Still building. Still curious. That's pretty much the whole story."
-              className="text-sm md:text-lg text-white font-semibold leading-relaxed block tracking-wide"
+              className="text-xs md:text-lg text-white font-semibold leading-snug md:leading-relaxed block tracking-wide"
               duration={1600}
             />
           </div>
@@ -219,7 +219,7 @@ export default function Home() {
           initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.5, duration: 0.8, ease: "easeInOut" }}
-          className="relative flex items-end justify-center w-full md:w-1/2 h-[75vw] sm:h-[75vw] md:h-screen z-10 -mt-44 md:mt-0"
+          className="relative flex items-end justify-center w-full md:w-1/2 flex-1 md:flex-none md:h-screen z-10 md:mt-0"
         >
           {/* Portrait Image with silhouette fade */}
           <div
