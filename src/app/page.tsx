@@ -286,35 +286,139 @@ export default function Home() {
         </motion.div>
       </SpaceBackground>
 
-      {/* Storytelling About Section */}
-      <section id="about" className="py-20 w-full bg-black">
-        <TracingBeam className="px-6">
-          <div className="max-w-2xl mx-auto antialiased pt-4 relative">
-            <h2 className="text-3xl font-bold text-white mb-8">My Journey</h2>
-            
-            <div className="mb-10 content">
-              <p className="text-neutral-300 text-lg mb-4">
-                I started my journey as a developer with a passion for building things that live on the internet. What started as simple HTML and CSS websites grew into a multifaceted skillset encompassing modern web frameworks, complex animations, and full-stack development.
-              </p>
-              <p className="text-neutral-300 text-lg mb-4">
-                Today, my focus is bridging the gap between design and engineering. I strive to create web experiences that are not only performant and perfectly structured but also highly engaging and breathtaking to look at.
-              </p>
+      {/* About Me – Scrapbook Layout */}
+      <section id="about" className="py-24 relative w-full overflow-hidden flex bg-[#eeede8]"
+               style={{ backgroundImage: "url('https://www.transparenttextures.com/patterns/seamless-paper-texture.png')" }}>
+        
+        {/* Dark green side strip simulating the notebook spine */}
+        <div className="absolute top-0 bottom-0 left-0 w-8 md:w-16 bg-[#274533] border-r-4 border-[#1e3627] z-0 shadow-[inset_-5px_0_10px_rgba(0,0,0,0.4)]" />
+        {/* Torn paper edge effect near the spine */}
+        <div className="absolute top-0 bottom-0 left-6 md:left-14 w-4 bg-white/40 z-0" style={{ clipPath: "polygon(0% 0%, 100% 0%, 80% 5%, 100% 10%, 70% 15%, 100% 20%, 80% 25%, 100% 30%, 70% 35%, 100% 40%, 80% 45%, 100% 50%, 70% 55%, 100% 60%, 80% 65%, 100% 70%, 70% 75%, 100% 80%, 80% 85%, 100% 90%, 70% 95%, 100% 100%, 0% 100%)" }} />
+
+        <div className="w-full max-w-5xl mx-auto px-10 md:px-24 relative z-10 flex flex-col md:flex-row gap-8 md:gap-16 items-start">
+
+          {/* Left Column – Polaroid & Notepad */}
+          <div className="relative flex-shrink-0 w-full md:w-[280px]">
+
+            {/* Polaroid frame with Canvas Reveal */}
+            <div className="group relative rotate-[-3deg] bg-[#fbfbfb] p-3 pb-12 shadow-2xl shadow-black/30 w-[240px] mx-auto md:mx-0 border border-neutral-200 cursor-pointer">
+              
+              {/* Realistic Paperclip */}
+              <div className="absolute -top-12 left-1/2 -translate-x-1/2 w-6 h-24 z-30">
+                <svg viewBox="0 0 24 96" fill="none" stroke="#777" strokeWidth="2.5" className="w-full h-full drop-shadow-[2px_4px_3px_rgba(0,0,0,0.3)]">
+                  <path d="M12,85 C6.5,85 2,80.5 2,75 L2,20 C2,10.6 9.6,3 19,3 C22.9,3 26,6.1 26,10 L26,65 C26,68.9 22.9,72 19,72 L12,72 C9.2,72 7,69.8 7,67 L7,25" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
+              
+              {/* Interactive Photo Area */}
+              <div className="relative w-full aspect-[4/5] overflow-hidden bg-[#274533] flex items-center justify-center">
+                {/* Default state: Image */}
+                <div className="absolute inset-0 z-10 transition-opacity duration-500 group-hover:opacity-0 mix-blend-luminosity">
+                   <Image src="/portfolio_image-Photoroom.png" alt="Santhosh Kunam" fill className="object-cover object-top opacity-90 sepia-[.3]" />
+                </div>
+                
+                {/* Hover state: Canvas Reveal Effect */}
+                <div className="absolute inset-0 z-0">
+                  <CanvasRevealEffect
+                    animationSpeed={3}
+                    containerClassName="bg-[#274533]"
+                    colors={[
+                      [110, 231, 183], // emerald-300
+                      [52, 211, 153],  // emerald-400
+                    ]}
+                    dotSize={2}
+                  />
+                </div>
+              </div>
+              <p className="text-center text-neutral-400 text-xs mt-3 font-mono tracking-widest uppercase relative z-20">Santhosh Kunam</p>
             </div>
 
-            <h2 className="text-3xl font-bold text-white mb-8 mt-16">Skills & Tools</h2>
-            <div className="mb-10 content">
-              <p className="text-neutral-300 text-lg mb-4">
-                My toolbelt is constantly evolving, but here are some of the technologies I frequently use to bring ideas to life:
-              </p>
-              <ul className="list-disc pl-5 text-neutral-300 text-lg space-y-2">
-                <li><strong className="text-white">Frontend:</strong> React, Next.js, Framer Motion, Tailwind CSS</li>
-                <li><strong className="text-white">Creative Coding:</strong> Aceternity UI, Three.js, WebGL</li>
-                <li><strong className="text-white">Backend:</strong> Node.js, Express, PostgreSQL, MongoDB</li>
+            {/* Torn Notepad Card */}
+            <div className="relative mt-2 ml-4 rotate-[2deg] bg-[#fdfaf1] border border-neutral-300 shadow-xl p-5 w-[250px] mx-auto md:mx-0 font-mono text-neutral-800"
+                 style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 5% 100%, 0 95%, 5% 90%, 0 85%, 5% 80%, 0 75%, 5% 70%, 0 65%, 5% 60%, 0 55%, 5% 50%, 0 45%, 5% 40%, 0 35%, 5% 30%, 0 25%, 5% 20%, 0 15%, 5% 10%, 0 5%)" }}>
+              <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: "repeating-linear-gradient(transparent, transparent 31px, rgba(0,0,0,0.06) 31px, rgba(0,0,0,0.06) 32px)", backgroundPositionY: "35px" }} />
+              
+              {/* Handwritten name on notepad */}
+              <h3 className="text-2xl font-bold mb-1" style={{ fontFamily: "'Caveat', cursive", letterSpacing: "2px" }}>Santhosh</h3>
+              <p className="text-sm font-semibold mb-5" style={{ fontFamily: "'Caveat', cursive", opacity: 0.8 }}>01 / 01 / 2024</p>
+              
+              <ul className="space-y-4 text-sm relative z-10 font-bold" style={{ fontFamily: "'Caveat', cursive", fontSize: "1.2rem", color: "#333" }}>
+                <li>Role <span className="font-normal opacity-70 ml-2">, Software Engineer</span></li>
+                <li>Focus <span className="font-normal opacity-70 ml-2">, Cloud & AI</span></li>
+                <li>Location <span className="font-normal opacity-70 ml-2">, India</span></li>
               </ul>
             </div>
           </div>
-        </TracingBeam>
+
+          {/* Right Column – Text & Swatches */}
+          <div className="flex-1 pt-6 md:pt-10">
+            {/* Title */}
+            <h2 className="text-4xl md:text-6xl font-bold text-neutral-800 mb-2 rotate-[-2deg]" style={{ fontFamily: "'Caveat', cursive" }}>
+              About me
+            </h2>
+            {/* Scribble line */}
+            <svg className="w-56 h-4 mb-8 rotate-[-1deg] opacity-70" viewBox="0 0 200 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2.5 5C50 2 150 8 197.5 5" stroke="#111" strokeWidth="2" strokeLinecap="round" style={{ filter: "url(#roughness)" }}/>
+              <defs>
+                <filter id="roughness">
+                  <feTurbulence type="fractalNoise" baseFrequency="0.5" numOctaves="3" result="noise" />
+                  <feDisplacementMap in="SourceGraphic" in2="noise" scale="2" xChannelSelector="R" yChannelSelector="G" />
+                </filter>
+              </defs>
+            </svg>
+
+            {/* Handwritten intro block */}
+            <div className="text-neutral-700 leading-[2.2] md:leading-[2.5] pr-4 max-w-xl" style={{ fontFamily: "'Caveat', cursive", fontSize: "1.35rem", fontWeight: 600 }}>
+              <p className="mb-6 indent-8">
+                I'm a software engineer passionate about modern web technologies and cloud architecture. I enjoy bridging the gap between design and engineering, creating experiences that look beautiful and perform perfectly.
+              </p>
+              <p className="mb-8">
+                Currently, I'm building generative AI tools, diving deep into RAG systems, and exploring Next.js ecosystems. When I'm away from the keyboard, you'll find me exploring new coffee shops and plotting my next big project.
+              </p>
+            </div>
+
+            {/* Color Swatches (Pantone style) & Stamp */}
+            <div className="relative flex gap-1 md:gap-4 mt-12 items-end justify-end md:justify-start">
+              
+              {/* Tape for swatches */}
+              <div className="absolute -top-3 left-10 md:left-20 w-32 h-8 bg-[#e8e6df] rotate-[-5deg] z-30 shadow-sm border border-neutral-300 opacity-90" style={{ clipPath: "polygon(5% 0%, 95% 5%, 100% 90%, 0% 100%)" }} />
+
+              {/* Yellow Mustard Swatch */}
+              <div className="relative rotate-[-3deg] w-32 bg-[#ffbf47] shadow-xl p-2 pb-12 rounded-sm border border-neutral-200 ml-4 z-10 transition-transform hover:-translate-y-2">
+                <div className="absolute bottom-2 left-2 flex flex-col">
+                  <span className="text-white text-xl font-bold" style={{ fontFamily: "'Caveat', cursive" }}>Yellow</span>
+                  <span className="text-white text-xl font-bold -mt-2" style={{ fontFamily: "'Caveat', cursive" }}>Mustard</span>
+                </div>
+                {/* White bottom border area (like pantone card) */}
+                <div className="absolute bottom-0 left-0 right-0 h-16 bg-[#fbfbfb] -z-10" />
+              </div>
+
+              {/* Greenery Swatch */}
+              <div className="relative rotate-[4deg] w-36 bg-[#274533] shadow-2xl p-2 pb-14 rounded-sm border border-neutral-200 -ml-4 z-20 transition-transform hover:-translate-y-2">
+                <div className="absolute bottom-3 left-3">
+                  <span className="text-white text-2xl font-bold" style={{ fontFamily: "'Caveat', cursive" }}>Greenery</span>
+                </div>
+                {/* White bottom border area */}
+                <div className="absolute bottom-0 left-0 right-0 h-16 bg-[#fbfbfb] -z-10" />
+              </div>
+
+              {/* Classified Red Stamp */}
+              <div className="absolute -bottom-8 -right-4 md:right-10 w-40 h-40 border-[6px] border-red-600/60 rounded-full flex items-center justify-center rotate-[-15deg] pointer-events-none mix-blend-multiply opacity-70 z-30"
+                   style={{ maskImage: "url('https://www.transparenttextures.com/patterns/grunge-wall.png')", WebkitMaskImage: "url('https://www.transparenttextures.com/patterns/grunge-wall.png')" }}>
+                <div className="w-[88%] h-[88%] border-2 border-red-600 rounded-full flex flex-col items-center justify-center pt-2">
+                  <div className="uppercase text-red-600 font-bold tracking-widest text-sm absolute top-2 pb-2" style={{ transform: "rotate(-10deg) arc", clipPath: "ellipse(100% 100% at 50% 100%)"}}>CLASSIFIED</div>
+                  <span className="text-red-600 font-bold text-3xl tracking-widest mt-2 border-y-2 border-red-600 py-1 w-full text-center">TOP SECRET</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        
+        {/* Load Caveat handwriting font */}
+        <style>{`@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&display=swap');`}</style>
       </section>
+
 
       {/* Projects Showcase */}
       <section id="projects" className="py-20 bg-black border-t border-neutral-800">
