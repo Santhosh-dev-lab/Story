@@ -10,7 +10,7 @@ import { MaskContainer } from "@/components/ui/svg-mask-effect";
 import { EncryptedText } from "@/components/ui/encrypted-text";
 import { TerminalBadge } from "@/components/ui/terminal-badge";
 import { FloatingDock } from "@/components/ui/floating-dock";
-import { CanvasRevealEffect } from "@/components/ui/canvas-reveal-effect";
+import { PixelatedCanvas } from "@/components/ui/pixelated-canvas";
 import Image from "next/image";
 
 const FloatingInterests = () => {
@@ -287,79 +287,112 @@ export default function Home() {
         </motion.div>
       </SpaceBackground>
 
-      {/* About Me – Scrapbook Layout */}
-      <section id="about" className="py-24 relative w-full overflow-hidden flex bg-[#eeede8]"
-               style={{ backgroundImage: "url('https://www.transparenttextures.com/patterns/seamless-paper-texture.png')" }}>
+      {/* About Me – Semi-Transparent Scrapbook Layout */}
+      <section id="about" className="min-h-screen relative w-full overflow-hidden flex items-center justify-center bg-transparent py-12">
         
-        {/* Dark green side strip simulating the notebook spine */}
-        <div className="absolute top-0 bottom-0 left-0 w-8 md:w-16 bg-[#274533] border-r-4 border-[#1e3627] z-0 shadow-[inset_-5px_0_10px_rgba(0,0,0,0.4)]" />
-        {/* Torn paper edge effect near the spine */}
-        <div className="absolute top-0 bottom-0 left-6 md:left-14 w-4 bg-white/40 z-0" style={{ clipPath: "polygon(0% 0%, 100% 0%, 80% 5%, 100% 10%, 70% 15%, 100% 20%, 80% 25%, 100% 30%, 70% 35%, 100% 40%, 80% 45%, 100% 50%, 70% 55%, 100% 60%, 80% 65%, 100% 70%, 70% 75%, 100% 80%, 80% 85%, 100% 90%, 70% 95%, 100% 100%, 0% 100%)" }} />
+        {/* The Paper Content Container - Floating on the space background */}
+        <div className="w-full max-w-6xl mx-auto px-6 md:px-12 relative z-10 flex flex-col md:flex-row gap-8 md:gap-12 items-center md:items-center bg-[#0a0a0a]/70 backdrop-blur-xl rounded-[2.5rem] border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.5)] overflow-hidden py-8 md:py-12"
+             style={{ backgroundImage: "url('https://www.transparenttextures.com/patterns/black-paper.png')" }}>
+          
+          {/* Decorative Tape Elements for Scrapbook Effect */}
+          <div className="absolute top-4 left-1/4 w-24 h-8 bg-white/10 rotate-[-15deg] backdrop-blur-sm border border-white/5 z-20 opacity-40" style={{ clipPath: "polygon(0% 10%, 100% 0%, 95% 90%, 5% 100%)" }} />
+          <div className="absolute bottom-8 right-1/4 w-28 h-10 bg-white/10 rotate-[10deg] backdrop-blur-sm border border-white/5 z-20 opacity-30" style={{ clipPath: "polygon(5% 0%, 95% 15%, 100% 90%, 0% 85%)" }} />
 
-        <div className="w-full max-w-5xl mx-auto px-10 md:px-24 relative z-10 flex flex-col md:flex-row gap-8 md:gap-16 items-start">
+          {/* Binding edge - more 'scrapped' and aligned */}
+          <div className="absolute top-0 bottom-0 left-0 w-4 md:w-10 bg-[#050505] border-r border-white/10 z-0" />
+          {/* Torn paper edge effect */}
+          <div className="absolute top-0 bottom-0 left-4 md:left-10 w-4 bg-white/10 z-0" style={{ clipPath: "polygon(0% 0%, 100% 0%, 85% 3%, 100% 6%, 80% 9%, 100% 12%, 85% 15%, 100% 18%, 80% 21%, 100% 24%, 85% 27%, 100% 30%, 80% 33%, 100% 36%, 85% 39%, 100% 42%, 80% 45%, 100% 48%, 85% 51%, 100% 54%, 80% 57%, 100% 60%, 85% 63%, 100% 66%, 80% 69%, 100% 72%, 85% 75%, 100% 78%, 80% 81%, 100% 84%, 85% 87%, 100% 90%, 80% 93%, 100% 96%, 85% 99%, 100% 100%, 0% 100%)" }} />
 
-          {/* Left Column – Polaroid & Notepad */}
+        <div className="w-full relative z-10 flex flex-col md:flex-row gap-8 md:gap-12 items-center md:items-start pl-8 md:pl-20 pr-6 md:pr-12">
+
+          {/* Left Column – Compact ID Card */}
           <div className="relative flex-shrink-0 w-full md:w-[280px]">
-
-            {/* Polaroid frame with Canvas Reveal */}
-            <div className="group relative rotate-[-3deg] bg-[#fbfbfb] p-3 pb-12 shadow-2xl shadow-black/30 w-[240px] mx-auto md:mx-0 border border-neutral-200 cursor-pointer">
-              
-              {/* Realistic Paperclip */}
-              <div className="absolute -top-12 left-1/2 -translate-x-1/2 w-6 h-24 z-30">
-                <svg viewBox="0 0 24 96" fill="none" stroke="#777" strokeWidth="2.5" className="w-full h-full drop-shadow-[2px_4px_3px_rgba(0,0,0,0.3)]">
-                  <path d="M12,85 C6.5,85 2,80.5 2,75 L2,20 C2,10.6 9.6,3 19,3 C22.9,3 26,6.1 26,10 L26,65 C26,68.9 22.9,72 19,72 L12,72 C9.2,72 7,69.8 7,67 L7,25" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </div>
-              
-              {/* Interactive Photo Area */}
-              <div className="relative w-full aspect-[4/5] overflow-hidden bg-[#274533] flex items-center justify-center">
-                {/* Default state: Image */}
-                <div className="absolute inset-0 z-10 transition-opacity duration-500 group-hover:opacity-0 mix-blend-luminosity">
-                   <Image src="/portfolio_image-Photoroom.png" alt="Santhosh Kunam" fill className="object-cover object-top opacity-90 sepia-[.3]" />
-                </div>
-                
-                {/* Hover state: Canvas Reveal Effect */}
-                <div className="absolute inset-0 z-0">
-                  <CanvasRevealEffect
-                    animationSpeed={3}
-                    containerClassName="bg-[#274533]"
-                    colors={[
-                      [110, 231, 183], // emerald-300
-                      [52, 211, 153],  // emerald-400
-                    ]}
-                    dotSize={2}
-                  />
-                </div>
-              </div>
-              <p className="text-center text-neutral-400 text-xs mt-3 font-mono tracking-widest uppercase relative z-20">Santhosh Kunam</p>
+            {/* Paperclip - perfectly aligned */}
+            <div className="absolute -top-10 left-1/2 -translate-x-1/2 z-40 drop-shadow-lg">
+              <svg width="40" height="80" viewBox="0 0 40 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="opacity-90">
+                <path d="M12,85 C6.5,85 2,80.5 2,75 L2,20 C2,10.6 9.6,3 19,3 C22.9,3 26,6.1 26,10 L26,65 C26,68.9 22.9,72 19,72 L12,72 C9.2,72 7,69.8 7,67 L7,25" stroke="#666" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
             </div>
 
-            {/* Torn Notepad Card */}
-            <div className="relative mt-2 ml-4 rotate-[2deg] bg-[#fdfaf1] border border-neutral-300 shadow-xl p-5 w-[250px] mx-auto md:mx-0 font-mono text-neutral-800"
-                 style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 5% 100%, 0 95%, 5% 90%, 0 85%, 5% 80%, 0 75%, 5% 70%, 0 65%, 5% 60%, 0 55%, 5% 50%, 0 45%, 5% 40%, 0 35%, 5% 30%, 0 25%, 5% 20%, 0 15%, 5% 10%, 0 5%)" }}>
-              <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: "repeating-linear-gradient(transparent, transparent 31px, rgba(0,0,0,0.06) 31px, rgba(0,0,0,0.06) 32px)", backgroundPositionY: "35px" }} />
+            {/* ID Card Body - Shorter Height */}
+            <div className="bg-[#0f0f0f] p-4 pt-8 rounded-xl border border-neutral-800 shadow-2xl relative overflow-hidden">
+              <div className="text-center mb-4">
+                <h3 className="text-white font-mono text-xl tracking-[0.2em] mb-1">ID: SK-P-01</h3>
+                <p className="text-emerald-500 font-mono text-[9px] tracking-widest uppercase opacity-80">Authorized Personnel Only</p>
+              </div>
+
+              {/* Pixelated Photo Area - Shorter aspect ratio */}
+              <div className="group relative w-full aspect-[1/1.1] overflow-hidden bg-black flex items-center justify-center border-2 border-neutral-800 rounded-lg mb-4 cursor-crosshair">
+                
+                {/* Multi-colored Pixelated Canvas (Matched to Reference) */}
+                <PixelatedCanvas
+                  src="/portfolio_image-Photoroom.png"
+                  width={280}
+                  height={350}
+                  cellSize={5}
+                  dotScale={0.92}
+                  shape="square"
+                  backgroundColor="#000000"
+                  dropoutStrength={0.03} 
+                  interactive
+                  distortionStrength={5}
+                  distortionRadius={80}
+                  distortionMode="swirl"
+                  followSpeed={0.2}
+                  jitterStrength={2}
+                  jitterSpeed={2}
+                  sampleAverage
+                  tintColor="#FFFFFF" 
+                  tintStrength={0.25} // Low tint to allow original colors
+                  className="absolute inset-0 w-full h-full object-cover object-top opacity-100 z-10"
+                />
+
+               {/* Reticle / scanner effect */}
+               <div className="absolute inset-0 border border-emerald-500/10 m-2 pointer-events-none z-20" />
+               <div className="absolute top-1 left-1 w-2 h-2 border-t border-l border-emerald-500/40 pointer-events-none z-20" />
+               <div className="absolute bottom-1 right-1 w-2 h-2 border-b border-r border-emerald-500/40 pointer-events-none z-20" />
+               
+               {/* Scan line effect overlay */}
+               <div className="absolute inset-0 bg-gradient-to-b from-transparent via-emerald-500/5 to-transparent h-1/3 w-full top-0 animate-[scan_4s_linear_infinite] z-20 pointer-events-none" />
+              </div>
               
-              {/* Handwritten name on notepad */}
-              <h3 className="text-2xl font-bold mb-1" style={{ fontFamily: "'Caveat', cursive", letterSpacing: "2px" }}>Santhosh</h3>
-              <p className="text-sm font-semibold mb-5" style={{ fontFamily: "'Caveat', cursive", opacity: 0.8 }}>01 / 01 / 2024</p>
-              
-              <ul className="space-y-4 text-sm relative z-10 font-bold" style={{ fontFamily: "'Caveat', cursive", fontSize: "1.2rem", color: "#333" }}>
-                <li>Role <span className="font-normal opacity-70 ml-2">, Software Engineer</span></li>
-                <li>Focus <span className="font-normal opacity-70 ml-2">, Cloud & AI</span></li>
-                <li>Location <span className="font-normal opacity-70 ml-2">, India</span></li>
-              </ul>
+              {/* Details List - More compact */}
+              <div className="space-y-1.5 font-mono text-[10px] mb-4">
+                <div className="flex justify-between border-b border-neutral-800/50 pb-1">
+                  <span className="text-neutral-500 uppercase">Clearance</span>
+                  <span className="text-emerald-500">LEVEL 05</span>
+                </div>
+                <div className="flex justify-between border-b border-neutral-800/50 pb-1">
+                  <span className="text-neutral-500 uppercase">Role</span>
+                  <span className="text-white font-bold">Cloud / AI Eng</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-neutral-500 uppercase">Status</span>
+                  <span className="text-emerald-500 animate-pulse">ACTIVE - TERMINAL</span>
+                </div>
+              </div>
+
+              {/* Barcode - Smaller */}
+              <div className="flex flex-col items-center">
+                <div className="w-full h-8 bg-white/90 rounded-[1px] flex items-end justify-around px-2 pt-1.5 overflow-hidden">
+                  {[...Array(40)].map((_, i) => (
+                    <div key={i} className={`bg-black ${Math.random() > 0.5 ? 'w-[1px]' : 'w-[2px]'} self-stretch`} style={{ height: `${Math.random() * 60 + 40}%` }} />
+                  ))}
+                </div>
+                <span className="text-[7px] text-neutral-500 mt-1 tracking-[0.4em] font-mono">2024//USER//AUTH_SK</span>
+              </div>
             </div>
           </div>
 
           {/* Right Column – Text & Swatches */}
           <div className="flex-1 pt-6 md:pt-10">
             {/* Title */}
-            <h2 className="text-4xl md:text-6xl font-bold text-neutral-800 mb-2 rotate-[-2deg]" style={{ fontFamily: "'Caveat', cursive" }}>
+            <h2 className="text-4xl md:text-6xl font-bold text-white mb-2 rotate-[-1deg]" style={{ fontFamily: "'Caveat', cursive" }}>
               About me
             </h2>
             {/* Scribble line */}
             <svg className="w-56 h-4 mb-8 rotate-[-1deg] opacity-70" viewBox="0 0 200 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M2.5 5C50 2 150 8 197.5 5" stroke="#111" strokeWidth="2" strokeLinecap="round" style={{ filter: "url(#roughness)" }}/>
+              <path d="M2.5 5C50 2 150 8 197.5 5" stroke="#4ade80" strokeWidth="2" strokeLinecap="round" style={{ filter: "url(#roughness)" }}/>
               <defs>
                 <filter id="roughness">
                   <feTurbulence type="fractalNoise" baseFrequency="0.5" numOctaves="3" result="noise" />
@@ -368,53 +401,47 @@ export default function Home() {
               </defs>
             </svg>
 
-            {/* Handwritten intro block */}
-            <div className="text-neutral-700 leading-[2.2] md:leading-[2.5] pr-4 max-w-xl" style={{ fontFamily: "'Caveat', cursive", fontSize: "1.35rem", fontWeight: 600 }}>
-              <p className="mb-6 indent-8">
+            {/* Handwritten intro block - slightly more compact for single view */}
+            <div className="text-neutral-300 leading-[1.8] md:leading-[2] pr-4 max-w-xl" style={{ fontFamily: "'Caveat', cursive", fontSize: "1.3rem", fontWeight: 600 }}>
+              <p className="mb-4 indent-8">
                 I'm a software engineer passionate about modern web technologies and cloud architecture. I enjoy bridging the gap between design and engineering, creating experiences that look beautiful and perform perfectly.
               </p>
-              <p className="mb-8">
+              <p className="mb-4">
                 Currently, I'm building generative AI tools, diving deep into RAG systems, and exploring Next.js ecosystems. When I'm away from the keyboard, you'll find me exploring new coffee shops and plotting my next big project.
               </p>
             </div>
 
-            {/* Color Swatches (Pantone style) & Stamp */}
-            <div className="relative flex gap-1 md:gap-4 mt-12 items-end justify-end md:justify-start">
+            {/* Enhanced Security Stamp */}
+            <div className="relative flex mt-8 items-center justify-center md:justify-start">
               
-              {/* Tape for swatches */}
-              <div className="absolute -top-3 left-10 md:left-20 w-32 h-8 bg-[#e8e6df] rotate-[-5deg] z-30 shadow-sm border border-neutral-300 opacity-90" style={{ clipPath: "polygon(5% 0%, 95% 5%, 100% 90%, 0% 100%)" }} />
-
-              {/* Yellow Mustard Swatch */}
-              <div className="relative rotate-[-3deg] w-32 bg-[#ffbf47] shadow-xl p-2 pb-12 rounded-sm border border-neutral-200 ml-4 z-10 transition-transform hover:-translate-y-2">
-                <div className="absolute bottom-2 left-2 flex flex-col">
-                  <span className="text-white text-xl font-bold" style={{ fontFamily: "'Caveat', cursive" }}>Yellow</span>
-                  <span className="text-white text-xl font-bold -mt-2" style={{ fontFamily: "'Caveat', cursive" }}>Mustard</span>
+              {/* Interesting Security Badge / Stamp */}
+              <div className="relative group/stamp cursor-default">
+                <div className="absolute inset-0 bg-emerald-500/20 rounded-full blur-xl group-hover/stamp:bg-emerald-500/30 transition-all duration-500" />
+                <div className="relative w-32 h-32 border-[4px] border-emerald-500/40 rounded-full flex items-center justify-center rotate-[-12deg] pointer-events-none mix-blend-screen overflow-hidden"
+                     style={{ maskImage: "url('https://www.transparenttextures.com/patterns/grunge-wall.png')", WebkitMaskImage: "url('https://www.transparenttextures.com/patterns/grunge-wall.png')" }}>
+                  
+                  <div className="w-[85%] h-[85%] border-2 border-emerald-500/40 rounded-full flex flex-col items-center justify-center">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-emerald-500/60 mb-1">
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                      <circle cx="12" cy="11" r="3" />
+                      <line x1="12" y1="11" x2="12" y2="11.01" />
+                    </svg>
+                    <div className="uppercase text-emerald-500/70 font-bold tracking-tighter text-[10px]">Security Verified</div>
+                    <div className="text-emerald-500/80 font-black text-xl tracking-widest mt-0.5 border-y-2 border-emerald-500/50 py-0.5 w-full text-center">CORE_SYS</div>
+                    <div className="text-[8px] text-emerald-500/50 font-mono mt-1">SN: 882-P-X09</div>
+                  </div>
                 </div>
-                {/* White bottom border area (like pantone card) */}
-                <div className="absolute bottom-0 left-0 right-0 h-16 bg-[#fbfbfb] -z-10" />
-              </div>
-
-              {/* Greenery Swatch */}
-              <div className="relative rotate-[4deg] w-36 bg-[#274533] shadow-2xl p-2 pb-14 rounded-sm border border-neutral-200 -ml-4 z-20 transition-transform hover:-translate-y-2">
-                <div className="absolute bottom-3 left-3">
-                  <span className="text-white text-2xl font-bold" style={{ fontFamily: "'Caveat', cursive" }}>Greenery</span>
-                </div>
-                {/* White bottom border area */}
-                <div className="absolute bottom-0 left-0 right-0 h-16 bg-[#fbfbfb] -z-10" />
-              </div>
-
-              {/* Classified Red Stamp */}
-              <div className="absolute -bottom-8 -right-4 md:right-10 w-40 h-40 border-[6px] border-red-600/60 rounded-full flex items-center justify-center rotate-[-15deg] pointer-events-none mix-blend-multiply opacity-70 z-30"
-                   style={{ maskImage: "url('https://www.transparenttextures.com/patterns/grunge-wall.png')", WebkitMaskImage: "url('https://www.transparenttextures.com/patterns/grunge-wall.png')" }}>
-                <div className="w-[88%] h-[88%] border-2 border-red-600 rounded-full flex flex-col items-center justify-center pt-2">
-                  <div className="uppercase text-red-600 font-bold tracking-widest text-sm absolute top-2 pb-2" style={{ transform: "rotate(-10deg) arc", clipPath: "ellipse(100% 100% at 50% 100%)"}}>CLASSIFIED</div>
-                  <span className="text-red-600 font-bold text-3xl tracking-widest mt-2 border-y-2 border-red-600 py-1 w-full text-center">TOP SECRET</span>
+                {/* Secondary 'Approved' text stamp offset */}
+                <div className="absolute -bottom-2 -left-6 border-2 border-amber-500/30 px-2 py-0.5 rounded rotate-[15deg] text-[10px] uppercase font-bold text-amber-500/40 tracking-widest mix-blend-screen"
+                     style={{ WebkitMaskImage: "url('https://www.transparenttextures.com/patterns/grunge-wall.png')" }}>
+                  System Approved
                 </div>
               </div>
 
             </div>
           </div>
         </div>
+      </div> {/* Closing the floating paper container */}
         
         {/* Load Caveat handwriting font */}
         <style>{`@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&display=swap');`}</style>
