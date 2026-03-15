@@ -154,6 +154,8 @@ const DotMatrix: React.FC<DotMatrixProps> = ({
       float colorIdx = random(st2) * 6.0;
       vec3 resultColor = u_colors[int(colorIdx)];
       ${shader}
+      // Provide a fallback block if the shader does not populate it
+      float block = 1.0;
       fragColor = vec4(resultColor, opacity * color);
       fragColor = vec4(resultColor, block * opacity * (1.0 - color));
         }
@@ -278,7 +280,7 @@ const ShaderMaterial = ({
   );
 };
 
-const Shader: React.FC<DotMatrixProps & { source: string; maxFps?: number }> = ({
+const Shader: React.FC<{ source: string; uniforms: Uniforms; maxFps?: number }> = ({
   source,
   uniforms,
   maxFps = 60,
@@ -288,7 +290,7 @@ const Shader: React.FC<DotMatrixProps & { source: string; maxFps?: number }> = (
       className="absolute inset-0 h-full w-full pointer-events-none"
       camera={{ position: [0, 0, 1] }}
     >
-      <ShaderMaterial source={source} uniforms={uniforms as any} maxFps={maxFps} />
+      <ShaderMaterial source={source} uniforms={uniforms} maxFps={maxFps} />
     </Canvas>
   );
 };

@@ -10,6 +10,7 @@ import { MaskContainer } from "@/components/ui/svg-mask-effect";
 import { EncryptedText } from "@/components/ui/encrypted-text";
 import { TerminalBadge } from "@/components/ui/terminal-badge";
 import { FloatingDock } from "@/components/ui/floating-dock";
+import { CanvasRevealEffect } from "@/components/ui/canvas-reveal-effect";
 import Image from "next/image";
 
 const FloatingInterests = () => {
