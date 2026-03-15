@@ -149,7 +149,7 @@ export default function Home() {
             },
             {
               title: "GitHub",
-              href: "https://github.com/santhoshkumar",
+              href: "https://github.com/Santhosh-dev-lab",
               icon: (
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
                   <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2Z" />
@@ -158,7 +158,7 @@ export default function Home() {
             },
             {
               title: "X (Twitter)",
-              href: "https://x.com/santhoshkunam",
+              href: "https://x.com/Kunamsanthosh",
               icon: (
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
                   <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
@@ -185,7 +185,7 @@ export default function Home() {
           initial={{ opacity: 0, x: -40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.3, duration: 0.8, ease: "easeInOut" }}
-          className="relative flex flex-col items-start justify-center px-6 md:px-12 z-10 w-full md:w-1/2 pt-28 pb-8 md:py-0 md:h-screen -mt-8 md:-mt-16"
+          className="relative flex flex-col items-start justify-center px-6 md:px-12 z-10 w-full md:w-1/2 pt-20 pb-4 md:py-0 md:h-screen md:-mt-16"
         >
           <MaskContainer
             revealText={
@@ -212,10 +212,6 @@ export default function Home() {
             />
           </div>
 
-          {/* Subtitle – visible on mobile below name */}
-          <p className="mt-4 text-neutral-400 text-sm sm:text-base max-w-xs leading-relaxed md:hidden">
-            Software Engineer · NextJS Developer · Cloud & AI Enthusiast
-          </p>
         </motion.div>
 
         {/* Right Side – Image & floating badges */}
@@ -223,7 +219,7 @@ export default function Home() {
           initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.5, duration: 0.8, ease: "easeInOut" }}
-          className="relative flex items-end justify-center w-full md:w-1/2 h-[80vw] sm:h-[75vw] md:h-screen z-10 -mt-16 md:mt-0"
+          className="relative flex items-end justify-center w-full md:w-1/2 h-[75vw] sm:h-[75vw] md:h-screen z-10 mt-2 md:mt-0"
         >
           {/* Portrait Image with silhouette fade */}
           <div
@@ -250,8 +246,7 @@ export default function Home() {
           <motion.div
             animate={{ y: [0, -10, 0] }}
             transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-            className="hidden sm:block absolute top-[18%] left-0 md:left-[-5%] z-30"
-          >
+            className="absolute top-[5%] left-0 md:top-[18%] md:left-[-5%] z-30 scale-[0.58] origin-top-left md:scale-100">
             <TerminalBadge
               sessionLabel="bash — 80×24"
               prompt="santhosh@dev:~"
@@ -265,8 +260,7 @@ export default function Home() {
           <motion.div
             animate={{ y: [0, 12, 0] }}
             transition={{ repeat: Infinity, duration: 5, ease: "easeInOut", delay: 1 }}
-            className="hidden sm:block absolute bottom-[32%] right-0 md:right-4 z-30"
-          >
+            className="absolute bottom-[20%] right-0 md:bottom-[32%] md:right-4 z-30 scale-[0.58] origin-bottom-right md:scale-100">
             <TerminalBadge
               sessionLabel="zsh — 80×24"
               prompt="santhosh@dev:~/projects"
@@ -280,8 +274,7 @@ export default function Home() {
           <motion.div
             animate={{ y: [0, -12, 0] }}
             transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut", delay: 2 }}
-            className="hidden sm:block absolute top-[8%] right-2 md:right-10 z-30"
-          >
+            className="absolute top-[30%] right-0 md:top-[8%] md:right-10 z-30 scale-[0.58] origin-top-right md:scale-100">
             <TerminalBadge
               sessionLabel="ssh — cloud"
               prompt="santhosh@aws:~"
