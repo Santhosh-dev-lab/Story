@@ -31,8 +31,10 @@ import {
   Linkedin,
   ExternalLink,
   Camera,
-  Laptop
+  Laptop,
+  Terminal as TerminalIcon
 } from "lucide-react";
+import { EngineeringStamp } from "@/components/ui/engineering-stamp";
 
 const FloatingInterests = () => {
   const [mounted, setMounted] = useState(false);
@@ -404,9 +406,14 @@ export default function Home() {
                   </div>
                 </div>
               </div>}
-              className="md:col-span-3"
+              className="md:col-span-2"
               icon={<Rocket className="h-4 w-4 text-emerald-500" />}
             />
+
+            {/* Engineering Stamp - Standalone */}
+            <div className="flex items-center justify-center p-4 relative overflow-hidden">
+              <EngineeringStamp />
+            </div>
           </BentoGrid>
         </div>
       </section>
